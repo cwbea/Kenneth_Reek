@@ -1,0 +1,110 @@
+1. *array
+
+Subscript form:
+array[0]
+
+Explanation:
+array is of type int (*)[5][3], a pointer to a [5][3] array. Dereferencing it gives array[0], which is of type int [5][3].
+2. *(array + 2)
+
+Subscript form:
+array[2]
+
+Explanation:
+array + 2 points to the third [5][3] block (index 2). Dereferencing it gives that whole block, so this is array[2], type int [5][3].
+3. *(array + 1) + 4
+
+Subscript form:
+array[1][4]
+
+Explanation:
+
+    array + 1 → pointer to array[1] (a [5][3] block)
+
+    *(array + 1) → dereferences to array[1], type int [5][3]
+
+    + 4 moves 4 rows forward → array[1][4], type int [3]
+
+4. *( *(array + 1) + 4 )
+
+Subscript form:
+array[1][4][0]
+
+Explanation:
+
+    array + 1 → points to array[1]
+
+    *(array + 1) → array[1], which is a [5][3]
+
+    *(... + 4) → array[1][4], which is a int[3]
+
+    Dereferencing again → array[1][4][0], type int
+
+5. *( *( *(array + 3) + 1 ) + 2 )
+
+Subscript form:
+array[3][1][2]
+
+Explanation:
+
+    array + 3 → pointer to array[3]
+
+    *(...) → array[3], which is [5][3]
+
+    + 1 → array[3][1]
+
+    + 2 → move to element 2 in that row → array[3][1][2], type int
+
+6. *( *( *array + 1 ) + 2 )
+
+Subscript form:
+array[0][1][2]
+
+Explanation:
+
+    *array → array[0]
+
+    + 1 → array[0][1]
+
+    + 2 → move to 3rd element → array[0][1][2], type int
+
+7. *{ **array + 2 )
+
+(Assuming typo in the brackets, should be: *( **array + 2 ))
+
+Subscript form:
+array[0][0][2]
+
+Explanation:
+
+    *array → array[0], a [5][3]
+
+    **array → array[0][0], which is a int[3]
+
+    + 2 → third element → array[0][0][2]
+
+8. **( *array + 1 )
+
+Subscript form:
+array[0][1][0]
+
+Explanation:
+
+    *array → array[0]
+
+    + 1 → second row: array[0][1]
+
+    **(...) → first element: array[0][1][0]
+
+9. ***array
+
+Subscript form:
+array[0][0][0]
+
+Explanation:
+
+    *array → array[0]
+
+    **array → array[0][0]
+
+    ***array → array[0][0][0]

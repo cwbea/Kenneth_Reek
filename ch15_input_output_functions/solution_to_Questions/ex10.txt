@@ -1,0 +1,49 @@
+The functions fprintf, fscanf, fputs, and fclose all take a pointer to a FILE (i.e., FILE *) 
+rather than the FILE structure itself for three key reasons:
+ 1. Efficiency: Avoid Copying Large Structures
+
+Passing a FILE by value (instead of a pointer) would require making a copy of the entire FILE structure each time the function is called.
+
+    The FILE structure is typically quite large and complex—it contains internal buffers, file descriptors, and state flags.
+
+    Copying this data would be inefficient and unnecessary for simple I/O operations.
+
+    Worse, such copies would be disconnected from the original file state (e.g., buffered data wouldn't sync between copies).
+
+Passing a pointer avoids this problem.
+ 2. Shared Access to the Actual File Stream
+
+When multiple parts of a program perform I/O using the same FILE * stream, they need to operate 
+on the same underlying stream state (e.g., file position, error flags, and buffers).
+
+    If FILE were passed by value, changes (like moving the file pointer or buffering data) wouldn’t be reflected elsewhere.
+
+    By using a pointer, all parts of the program share access to the same actual stream.
+
+ 3. Opaque Structure (Encapsulation)
+
+In modern C implementations, the FILE structure is opaque: its internal layout is hidden from the 
+programmer and defined inside the standard I/O library (stdio implementation).
+
+    This design encourages abstraction and portability.
+
+    You’re not supposed to know or care what’s inside FILE; you just operate on it using library functions and pass around a FILE *.
+
+ Bonus: Why It’s Designed This Way in the Standard
+
+The C standard specifies that all I/O operations use a FILE * for reasons of:
+
+    Portability
+
+    Efficiency
+
+    Safety
+
+    Compatibility with buffered I/O
+
+ Summary
+Reason	Explanation
+Efficiency	Avoids costly and unnecessary structure copying
+Shared State	Allows all parts of the program to operate on the same stream
+Encapsulation	Hides internal structure details, ensuring abstraction
+Portability and Compatibility	Works across different platforms and library implementations

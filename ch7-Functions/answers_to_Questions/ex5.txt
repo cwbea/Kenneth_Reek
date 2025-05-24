@@ -1,0 +1,11 @@
+If a function is called before the compiler has seen its prototype,
+and the function returns a non-integer type (e.g., float, double, or a pointer), 
+the compiler assumes by default that the function returns an int.
+
+This can lead to undefined behavior or incorrect results at runtime because:
+
+The function may return data of a type that occupies more memory than an int.
+
+The calling code may misinterpret the return value.
+
+On some systems, this can also break the calling conventions (e.g., how return values are passed via registers).

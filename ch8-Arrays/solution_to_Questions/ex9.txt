@@ -1,0 +1,2 @@
+int coin_values[] = {1, 5, 10, 25, 50, 100};  // Values in cents: penny, nickel, dime, quarter, half dollar, dollar
+

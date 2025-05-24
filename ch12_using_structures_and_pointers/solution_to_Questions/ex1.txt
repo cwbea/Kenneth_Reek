@@ -1,0 +1,109 @@
+Yes, Program 12.3 can be rewritten without using the current variable. To do this, we can directly modify the pointer traversal process, without needing to explicitly store the current node.
+
+Here’s a comparison of the original code and the version without using the current variable:
+Original Code (with current variable):
+
+/*
+** Insert into an ordered, singly linked list. The arguments are
+** a pointer to the first node in the list, and the value to
+** insert.
+*/
+#include <stdlib.h>
+#include <stdio.h>
+#include "sll_node.h"
+#define FALSE 0
+#define TRUE 1
+
+int sll_insert( register Node **linkp, int new_value ) {
+    register Node *current;
+    register Node *new;
+
+    /*
+    ** Look for the right place by walking down the list
+    ** until we reach a node whose value is greater than
+    ** or equal to the new value.
+    */
+    while( ( current = *linkp ) != NULL && current->value < new_value )
+        linkp = &current->link;
+
+    /*
+    ** Allocate a new node and store the new value into it.
+    ** In this event, we return FALSE.
+    */
+    new = (Node *)malloc( sizeof( Node ) );
+    if( new == NULL )
+        return FALSE;
+    new->value = new_value;
+
+    /*
+    ** Insert the new node into the list, and return TRUE.
+    */
+    new->link = current;
+    *linkp = new;
+    return TRUE;
+}
+
+Rewritten Code (without current):
+
+/*
+** Insert into an ordered, singly linked list. The arguments are
+** a pointer to the first node in the list, and the value to
+** insert.
+*/
+#include <stdlib.h>
+#include <stdio.h>
+#include "sll_node.h"
+#define FALSE 0
+#define TRUE 1
+
+int sll_insert( register Node **linkp, int new_value ) {
+    register Node *new;
+
+    /*
+    ** Look for the right place by walking down the list
+    ** until we reach a node whose value is greater than
+    ** or equal to the new value.
+    */
+    while( *linkp != NULL && (*linkp)->value < new_value )
+        linkp = &(*linkp)->link;
+
+    /*
+    ** Allocate a new node and store the new value into it.
+    ** In this event, we return FALSE.
+    */
+    new = (Node *)malloc( sizeof( Node ) );
+    if( new == NULL )
+        return FALSE;
+    new->value = new_value;
+
+    /*
+    ** Insert the new node into the list, and return TRUE.
+    */
+    new->link = *linkp;
+    *linkp = new;
+    return TRUE;
+}
+
+Key Differences and Comparison:
+
+    Avoidance of current:
+
+        The rewritten version removes the need for the current variable by directly using the pointer linkp to traverse the list.
+
+        In the original version, current was used to keep track of the current node as the pointer linkp was updated. Instead of storing current, the new version directly accesses *linkp in the while loop and modifies the linkp pointer.
+
+    Pointer Traversal:
+
+        In the original code, the traversal is done by assigning current = *linkp, and then linkp = &current->link. This keeps track of the current node separately.
+
+        In the rewritten version, the traversal is directly done by linkp = &(*linkp)->link, which ensures that linkp always points to the correct node without needing a separate variable like current.
+
+    Insertion Logic:
+
+        Both versions do the same thing when inserting the new node. After finding the correct position, a new node is allocated, and its link is set to the next node (*linkp), and the linkp is updated to point to the new node.
+
+    Readability and Efficiency:
+
+        The rewritten version may seem slightly more compact because it eliminates the current variable and uses linkp directly. It reduces the amount of code and might seem clearer for beginners because there is only one pointer (linkp) being used.
+
+        The original version might feel easier to follow for some people, as the explicit use of current makes the traversal and insertion process more apparent. It's easier to debug since you have a direct reference to the node being processed.

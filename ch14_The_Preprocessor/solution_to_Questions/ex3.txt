@@ -1,0 +1,22 @@
+#include <stdio.h>
+
+#define DEBUG_PRINT(fmt, expr) \
+    printf("DEBUG: %s = " fmt "\n", #expr, (expr))
+
+ How It Works:
+
+    #expr converts the expression into a string (e.g., x + 1 becomes "x + 1").
+
+    (expr) evaluates the expression.
+
+    fmt is the printf format specifier (like %d, %f, %s, etc.).
+
+  Example Usage:
+
+int x = 5;
+DEBUG_PRINT("%d", x + 3);  // Output: DEBUG: x + 3 = 8
+
+float y = 3.14;
+DEBUG_PRINT("%f", y * 2);  // Output: DEBUG: y * 2 = 6.280000
+
+This macro is a handy way to trace and debug values during development.

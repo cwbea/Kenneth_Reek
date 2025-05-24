@@ -1,0 +1,33 @@
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+int main() {
+    Point p = {1, 2};       // a Point struct
+    Point *a = &p;          // a points to p
+    Point **b = &a;         // b points to a (which points to p)
+}
+
+
+
+
+
+Valid expressions and values 
+
+| Expression | Type      | Value or Result |
+| ---------- | --------- | --------------- |
+| a          | Point*    |  &p             |
+| *a         | Point     | p (1, 2)        |
+| a->x       | int       | 1               |
+| b          | Point**   |  &a             |
+|  *b        | Point *   | a / &p          |
+| ( *b)->x   | int       | 1               |
+|   **b      | Point     | p (1, 2)        |
+
+
+Invalid expressions:
+
+b->a, b->x, *b->a, *b->x, b->a->x, (*b)->a
+→ These assume b or *b is a struct with a member named a or x, which is not true.
+

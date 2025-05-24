@@ -1,0 +1,61 @@
+Both solutions have merit, but which is "better" depends on your priorities: simplicity, 
+memory usage, or clarity. Here's a comparison of the two:
+
+ Solution 1: Leave One Array Element Unused
+How it works:
+
+    The array is never completely filled.
+
+    Full condition: (rear + 1) % size == front
+
+    Empty condition: front == rear
+
+ Advantages:
+
+    Simple logic: Very easy to implement and understand.
+
+    No extra variables needed.
+
+    Fewer chances of bugs due to off-by-one errors.
+
+ Disadvantages:
+
+    Wastes one element: If array size is N, only N - 1 items can be stored.
+
+ Solution 2: Use a Counter Variable
+How it works:
+
+    A separate variable (e.g., count) keeps track of how many elements are in the queue.
+
+    Full condition: count == size
+
+    Empty condition: count == 0
+
+ Advantages:
+
+    Uses full capacity: All N elements in the array can be used.
+
+    Can directly access number of elements (count) when needed.
+
+ Disadvantages:
+
+    Slightly more complex logic.
+
+    More room for bugs: You must update count correctly during every insert and delete.
+
+    Slight memory overhead (1 extra variable).
+
+ Which Is Better?
+Priority		Best Solution
+Simplicity	 	Leave one slot unused
+Maximum capacity	 Use a counter
+Fewer bugs		 Leave one slot unused
+Need element count	 Use a counter
+
+ Conclusion:
+
+    For general use and cleaner code, leaving one array element unused is typically better.
+
+    For maximum storage efficiency and if you're comfortable handling extra logic, use a counter.
+
+In most cases, especially for embedded or academic work, solution (1) is preferred due to its simplicity and reliability.

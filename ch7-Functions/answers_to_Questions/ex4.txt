@@ -1,0 +1,1 @@
+This will result in a compiler error or at least a warning, depending on the compiler:

@@ -1,0 +1,4 @@
+Both a[3] and b[3] refer to the same memory location, so they access the same value.
+
+There is no issue here with pointer dereferencing or array indexing as both a and b point to the same array.
+ Therefore, both assignments are equivalent in terms of the value they access and assign.

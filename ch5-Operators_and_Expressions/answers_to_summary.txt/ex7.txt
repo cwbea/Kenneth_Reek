@@ -1,0 +1,11 @@
+    1 <= a is evaluated first.
+
+    This returns either 0 (false) or 1 (true).
+
+    Then that result is compared to 10:
+
+        0 <= 10 → true (always)
+
+        1 <= 10 → true (also always)
+
+So this condition is always true, regardless of what a is!

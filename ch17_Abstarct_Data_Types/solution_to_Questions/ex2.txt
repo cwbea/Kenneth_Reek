@@ -1,0 +1,13 @@
+The most appropriate Abstract Data Type (ADT) for organizing milk on a supermarket shelf is a Queue.
+ Reason:
+
+A Queue follows the First-In, First-Out (FIFO) principle, which is ideal for managing perishable goods like milk. Here's why:
+ Real-world scenario:
+
+    New shipment arrives: New milk cartons are added to the back of the shelf (the rear of the queue).
+
+    Customer buys milk: They usually take milk from the front, i.e., the oldest ones (the front of the queue).
+
+This ensures older milk is sold first, reducing waste and spoilage.
+
+enqueue(new_milk), dequeue(old_milk).

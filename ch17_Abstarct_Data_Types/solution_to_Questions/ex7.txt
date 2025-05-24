@@ -1,0 +1,46 @@
+In the linked implementation of a stack, the destroy_stack function pops each value one by one to ensure proper memory deallocation.
+ Why is this necessary?
+
+In a linked list-based stack, each element (node) is dynamically allocated using malloc. These nodes are connected via pointers.
+
+typedef struct STACK_NODE {
+    STACK_TYPE value;
+    struct STACK_NODE *next;
+} StackNode;
+
+When the stack is no longer needed, you must free each node individually to avoid memory leaks.
+ What destroy_stack() does:
+
+void destroy_stack(void) {
+    while (!is_empty())
+        pop();
+}
+
+Each call to pop():
+
+    Saves the pointer to the top node
+
+    Moves the stack pointer to the next node
+
+    Frees the memory of the former top node
+
+
+ Why can’t you just do stack = NULL;?
+
+Because doing only that:
+
+    Doesn't free the memory used by the stack nodes
+
+    Causes a memory leak, since dynamically allocated memory remains allocated but inaccessible
+
+ Summary:
+
+The destroy_stack function pops each value one by one to:
+
+    Free all dynamically allocated memory
+
+    Prevent memory leaks
+
+    Ensure the stack is completely and cleanly removed
+
+It’s essential in C, where manual memory management is required.

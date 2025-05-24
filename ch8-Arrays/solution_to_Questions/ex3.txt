@@ -1,0 +1,9 @@
+data[1] == *(data + 1) == *(actual_data - 1 + 1) == *actual_data == actual_data[0]
+
+The author wants to write data[1] to access actual_data[0], i.e., to create the illusion of 1-based indexing.
+
+ it invokes undefined behavior (UB), even though data[1] might work as expected.
+
+In C and C++, pointer arithmetic is only valid within the bounds of the same array object,
+ or one past the end. Accessing before the start of the array is undefined behavior, 
+even if you don’t dereference that address.

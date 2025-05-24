@@ -1,0 +1,34 @@
+Here's how you can rewrite the do_pre_order_traverse function to perform an in-order traversal instead of a pre-order traversal:
+ Original Pre-order Version (for reference):
+
+static void
+do_pre_order_traverse(TreeNode *current, void (*callback)(TREE_TYPE value))
+{
+    if (current != NULL) {
+        callback(current->value);  // Root
+        do_pre_order_traverse(current->left, callback);  // Left
+        do_pre_order_traverse(current->right, callback); // Right
+    }
+}
+
+ Rewritten for In-order Traversal:
+
+static void
+do_in_order_traverse(TreeNode *current, void (*callback)(TREE_TYPE value))
+{
+    if (current != NULL) {
+        do_in_order_traverse(current->left, callback);   // Left
+        callback(current->value);                        // Root
+        do_in_order_traverse(current->right, callback);  // Right
+    }
+}
+
+Optional: Update Interface Function
+
+If you want to call this externally like pre_order_traverse, define:
+
+void
+in_order_traverse(void (*callback)(TREE_TYPE value))
+{
+    do_in_order_traverse(tree, callback);
+}

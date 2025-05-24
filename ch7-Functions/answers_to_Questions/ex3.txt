@@ -1,0 +1,8 @@
+The compiler will try to convert the expression to the declared return type. 
+This is called implicit type conversion or type coercion.
+If the conversion is safe (e.g., from int to float), it usually works fine.
+
+If the conversion is unsafe (e.g., from double to int, or from a pointer to an int),
+you may lose data or get a compiler warning or error, depending on the context and compiler settings.
+
+

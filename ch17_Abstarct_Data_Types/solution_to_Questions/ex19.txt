@@ -1,0 +1,23 @@
+The most appropriate traversal for implementing the destroy_tree function (i.e. deleting/freeing all nodes in a binary tree) is:
+ Post-order Traversal
+
+(Left → Right → Root)
+Why Post-order?
+
+Post-order traversal ensures that:
+
+    You free child nodes before freeing their parent.
+
+    This prevents accessing or freeing memory that still contains pointers to children that haven't been deallocated yet.
+
+ Example (Concept):
+
+void destroy_tree(TreeNode *node) {
+    if (node != NULL) {
+        destroy_tree(node->left);   // destroy left subtree
+        destroy_tree(node->right);  // destroy right subtree
+        free(node);                 // then destroy current node
+    }
+}
+
+This avoids memory leaks and dangling pointers, making it the safest and correct approach for deleting trees.

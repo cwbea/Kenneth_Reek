@@ -1,0 +1,3 @@
+False
+
+The correct usage of extern would be to reference a global variable declared outside of all functions.

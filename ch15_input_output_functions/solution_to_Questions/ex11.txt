@@ -1,0 +1,38 @@
+To open a file for writing without losing its former contents and allowing writing 
+anywhere in the file (random access), you should use the mode:
+
+"r+"
+
+Explanation:
+
+    "r+" — Open for reading and writing, starting at the beginning of the file.
+
+        The file must exist.
+
+        You can read and write anywhere in the file.
+
+        The file’s existing contents are preserved (not truncated).
+
+    Why not "w+"?
+
+        "w+" opens for reading and writing but truncates the file to zero length immediately, destroying previous contents.
+
+    Why not "a" or "a+"?
+
+        "a" and "a+" open for writing (and reading in "a+") but all writes are appended at the end of the file, so you cannot write arbitrarily anywhere.
+
+Summary table for modes regarding your requirements:
+
+Mode	Existing Content	Random Write Access	File Creation if Not Exist
+"r+"	Preserved		Yes			No
+"w+"	Truncated		Yes			Yes
+"a"	Preserved		No (writes append)	Yes
+"a+"	Preserved		No (writes append)	Yes
+So:
+
+FILE *fp = fopen("filename.txt", "r+");
+if (!fp) {
+    perror("Error opening file");
+    // handle error
+}
+// Now you can read and write anywhere in the file without losing existing contents

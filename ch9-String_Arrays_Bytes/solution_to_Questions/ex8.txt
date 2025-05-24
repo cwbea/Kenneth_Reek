@@ -1,0 +1,8 @@
+Expression 			 | Safe for raw memory? | Requires null terminator? | Returns
+memchr(buffer, 0, SIZE) - buffer | ✅ Yes 		| ❌ No 		    | Offset of first null (if any)
+strlen(buffer) 			 | ❌ No (needs string) | ✅ Yes 		    | Length of string before \0
+
+If buffer contains a null terminator within the first SIZE bytes, 
+and it starts at a valid string, both expressions return the same value:
+
+memchr(buffer, 0, SIZE) - buffer == strlen(buffer)

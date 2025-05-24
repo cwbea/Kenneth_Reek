@@ -1,0 +1,47 @@
+1. The entire function squares() will be commented out and ignored by the compiler, 
+   and nothing will happen when you call squares().
+
+2. Advantages
+   i. Simplicity for small projects.
+   ii. Faster compilation for small projects.
+   iii. Fewer files to manage.
+   iv.  Quick debugging.
+
+   Disadvantages
+  i. Program becomes progressively harder to maintain, navigate and navigate as the source
+     files becomes larger in size.
+ ii. Lack of modularity.
+ iii. Longer recompiling time.
+ iv.  Poor readability.
+ v.   Difficult collaboration.
+
+3. printf("\"Blunder\?\?!\?\?\"");
+
+4. Escape Sequence	Decimal Value 		ASCII Representation
+   \40			32			' '
+   \100			64			@
+   \x40			64			@
+   \x100		256			platform depedent
+   \0123		83			s
+   \x0123		291			beyond standard ASCII
+  
+5. int xy
+
+6. There is nothing wrong, however Case, If and while look like C keywords 
+   except that their first letters are capital letters, this can cause confusion.
+
+7. False because it greatly affects human readabiity and improper use of semicolons, indentations
+   and braces can cause logic errors especially in control flow statements.
+
+8. Both are correct, Program 1 is easier to read because it follows good formatting practices
+   like proper indentation, clean layout and one statement per line.
+
+9. gcc main.c list.c report.c -o myprogram 
+   This creates an executable file called myprogram
+
+10. gcc main.c list.c report.c -o myprogram -lparse
+   -lparse tells the linker to link your program with the libparse library.
+    By default, it looks for a file named libparse.a or libparse.so in standard library paths like /usr/lib.
+
+11. Only list.c needs to be recompiled.
+    You're only changing its implementation hence it doesn't affect headers or other files.

@@ -1,0 +1,7 @@
+Yes it is syntatically legal in C,
+The expression calculates a value, but on it's own it does nothing
+unless you assign it or print it like so
+
+int result = 3 * x * x - 4 * x + 6; // stores the result
+printf("%d\n", result);            // prints the result
+

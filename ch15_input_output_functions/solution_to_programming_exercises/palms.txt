@@ -1,0 +1,5 @@
+5 + 3;
+The parallelogram is not a function of a diameter.
+
+
+Total sum of integers at the start of lines: 5

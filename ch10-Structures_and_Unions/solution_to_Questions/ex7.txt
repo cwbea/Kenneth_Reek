@@ -1,0 +1,117 @@
+1. nodes
+
+    Value: Address 200 (start of the array).
+
+    Side effects: None.
+
+2. nodes.a
+
+    Invalid. nodes is an array, not a struct. You need nodes[0].a.
+
+3. nodes[3].a
+
+    Value: 12 (from initialization).
+
+    Side effects: None.
+
+4. nodes[3].c
+
+    Value: Pointer to nodes (i.e., address 200).
+
+    Side effects: None.
+
+5. nodes[3].c->a
+
+    Value: 5 (since nodes[3].c points to nodes[0]).
+
+    Side effects: None.
+
+6. *nodes
+
+    Value: Dereferencing array gives nodes[0] → {5, nodes+3, NULL}.
+
+    Side effects: None.
+
+7. {*nodes}.a
+
+    Value: 5. Equivalent to nodes[0].a.
+
+    Side effects: None.
+
+8. np
+
+    Initialized as: nodes + 2 → points to nodes[2].
+
+9. np->a
+
+    Value: 22 (from nodes[2]).
+
+    Side effects: None.
+
+10. np->c->c->a
+
+    np → nodes[2]
+
+    nodes[2].c → nodes[4]
+
+    nodes[4].c → nodes[1]
+
+    nodes[1].a → 15
+
+    Value: 15
+
+11. *nodes.a
+
+    Invalid. Misuse of syntax. Maybe meant (*nodes).a.
+
+12. &nodes->a
+
+    Invalid. nodes is an array. Try &nodes[0].a.
+
+13. npp
+
+    Initialized as: &nodes[1].b → points to pointer at offset 4 in nodes[1].
+
+14. npp->a
+
+    Invalid. npp is a pointer to pointer (struct NODE **), not a struct.
+
+15. *npp
+
+    Value: nodes[1].b → nodes + 4
+
+    So: *npp == nodes[4] → {18, nodes + 2, nodes + 1}
+
+16. nodes->a
+
+    nodes is equivalent to &nodes[0]
+
+    So nodes->a == nodes[0].a == 5
+
+17. nodes[3].b->b
+
+    nodes[3].b → nodes[1]
+
+    nodes[1].b → nodes[4]
+
+    Value: pointer to nodes[4]
+
+18. *nodes[3].b->b
+
+    nodes[3].b → nodes[1]
+
+    nodes[1].b → nodes[4]
+
+    *nodes[4] → {18, nodes+2, nodes+1}
+
+19. &nodes
+
+    Value: Address 200
+
+    Type: struct NODE (*)[5]
+
+20. &nodes[3].c
+
+    Address of c field in nodes[3]
+
+    nodes[3] at 236 → offset 8 → 244

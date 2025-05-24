@@ -1,0 +1,13 @@
+If the value returned from fopen is not checked for errors, the program may attempt to 
+operate on a NULL file pointer, which can lead to undefined behavior — typically resulting 
+in a crash (segmentation fault) or corrupted output.
+
+
+Proper way to handle fopen:
+
+FILE *f = fopen("data.txt", "r");
+if (f == NULL) {
+    perror("Failed to open file");
+    exit(EXIT_FAILURE);
+}
+// Safe to use f now

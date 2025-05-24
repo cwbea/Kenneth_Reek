@@ -1,0 +1,7 @@
+Expression 	| Value 		| Explanation
+array 		| 1000 			| Address of array[0], the first row of the array.
+array + 2 	| 1008 			| Points to array[2], the third row.
+array[3] 	| 1016 			| Points to array[3], the fourth row.
+array[2] - 1 	| 1006 			| Points to array[1][1], the last element of the second row.
+&array[1][2] 	| Invalid 		| Out of bounds (array only has 2 columns per row).
+&array[2][0] 	| 1008 			| Address of array[2][0], the first element of the third row.

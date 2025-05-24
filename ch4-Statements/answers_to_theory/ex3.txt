@@ -1,0 +1,9 @@
+Use blocks to:
+
+    Run multiple statements as one.
+
+    Manage variable scope.
+
+    Keep code readable.
+
+    Control when and where memory is used.

@@ -1,0 +1,64 @@
+You can obtain a list of all the error messages that perror() can print by referring to the standard
+ error codes defined in the C library header <errno.h>. Each of these codes corresponds to a predefined
+ system error and has an associated human-readable message.
+ 
+Methods to Obtain All perror() Messages:
+ 1. Manual Lookup in <errno.h> and Man Pages
+
+On a UNIX/Linux system, you can list all error messages with:
+
+man 3 errno
+
+Or to see error code meanings:
+
+man 3 perror
+
+Another useful command:
+
+errno -l
+
+This shows output like:
+
+EPERM           1 Operation not permitted
+ENOENT          2 No such file or directory
+ESRCH           3 No such process
+EINTR           4 Interrupted system call
+...
+
+🔹 2. Use a Program to Print All Messages
+
+You can write a simple C program that loops through known error codes and uses strerror() to print the messages:
+
+#include <stdio.h>
+#include <string.h>
+#include <errno.h>
+
+int main() {
+    for (int i = 0; i < sys_nerr; i++) {
+        printf("Error %d: %s\n", i, strerror(i));
+    }
+    return 0;
+}
+
+    Note: sys_nerr is not portable and may not be available on all systems. On POSIX systems,
+ you can manually define the range, like 0–133 (or use #define _GNU_SOURCE to access GNU extensions).
+
+🔹 3. Online Resources
+
+You can also view the complete list online, e.g.,:
+
+    https://man7.org/linux/man-pages/man3/perror.3.html
+
+    https://www.gnu.org/software/libc/manual/html_node/Error-Codes.html
+
+ Summary:
+
+    You can get all messages that perror() might print by:
+
+        Looking into <errno.h>
+
+        Using man 3 perror or errno -l
+
+        Calling strerror() in a loop
+
+        Consulting official documentation

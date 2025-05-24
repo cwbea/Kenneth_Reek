@@ -1,0 +1,3 @@
+Using size_t in strlen is appropriate because it reflects the nature of the value (non-negative length),
+ matches the expectations of memory operations, and supports large sizes.
+However, it requires careful handling in comparisons and arithmetic to avoid unsigned-related bugs.

@@ -1,0 +1,94 @@
+Step 1: Build the BST (assuming insertion order)
+
+    Start with 54 (root)
+
+    Insert 36 (left of 54)
+
+    Insert 72 (right of 54)
+
+    Insert 22 (left of 36)
+
+    Insert 16 (left of 22)
+
+    Insert 41 (right of 36)
+
+    Insert 25 (right of 22)
+
+    Insert 25 (duplicate, usually ignored or placed consistently; let’s ignore duplicates for clarity)
+
+    Insert 80 (right of 72)
+
+    Insert 61 (left of 72)
+
+    Insert 51 (left of 61)
+
+    Insert 73 (right of 72, left of 80)
+
+The tree structure looks like this:
+
+        54
+       /  \
+     36    72
+    /  \   /  \
+  22   41 61   80
+ /  \       /    \
+16  25    51     73
+
+Step 2: Traversals
+Pre-order (Root, Left, Right):
+
+54, 36, 22, 16, 25, 41, 72, 61, 51, 80, 73
+In-order (Left, Root, Right):
+
+Sorted order for BST
+
+16, 22, 25, 36, 41, 54, 51, 61, 72, 73, 80
+
+Wait — note 51 is left child of 61, so it comes before 61
+
+Correct in-order:
+
+16, 22, 25, 36, 41, 51, 61, 54, 72, 73, 80
+
+But that’s not correct because 54 is root, so in-order should be:
+
+Left subtree of 54:
+16, 22, 25, 36, 41
+Then 54
+Then right subtree:
+51, 61, 72, 73, 80
+
+So in-order:
+
+16, 22, 25, 36, 41, 54, 51, 61, 72, 73, 80
+Post-order (Left, Right, Root):
+
+Left subtree (36):
+16, 25, 22, 41, 36
+
+Right subtree (72):
+51, 61, 73, 80, 72
+
+Then root: 54
+
+So full post-order:
+
+16, 25, 22, 41, 36, 51, 61, 73, 80, 72, 54
+
+Breadth-first traversal (Level order):
+
+Level 1: 54
+Level 2: 36, 72
+Level 3: 22, 41, 61, 80
+Level 4: 16, 25, 51, 73
+
+So:
+
+54, 36, 72, 22, 41, 61, 80, 16, 25, 51, 73
+Summary:
+
+Traversal	Order
+Pre-order	54, 36, 22, 16, 25, 41, 72, 61, 51, 80, 73
+In-order	16, 22, 25, 36, 41, 54, 51, 61, 72, 73, 80
+Post-order	16, 25, 22, 41, 36, 51, 61, 73, 80, 72, 54
+Breadth-first	54, 36, 72, 22, 41, 61, 80, 16, 25, 51, 73

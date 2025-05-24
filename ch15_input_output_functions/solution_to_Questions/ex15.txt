@@ -1,0 +1,47 @@
+Format code: %-6.10s
+
+    % — start of format specifier.
+
+    - — left-justify the output within the given field width.
+
+    6 — minimum field width: the output will be at least 6 characters wide.
+
+    .10 — precision: print at most 10 characters from the string.
+
+    s — string conversion specifier.
+
+What it means for string printing:
+
+    Precision .10:
+    Limits the number of characters printed from the string to a maximum of 10 characters.
+
+        If the string is longer than 10 chars, only the first 10 chars are printed (string is truncated).
+
+        If the string is shorter than or equal to 10 chars, the whole string is printed.
+
+    Field width 6:
+    The printed output will be padded with spaces if it is shorter than 6 characters.
+
+        Since - is specified, padding will be added on the right (left-justified).
+
+Examples:
+
+    If the string is "Hello" (5 characters):
+
+        Precision .10 allows full string (5 ≤ 10).
+
+        Minimum width 6 means at least 6 spaces wide. Since string is 5 chars, 1 space is added on the right.
+        Output: "Hello " (6 chars total, left-justified)
+
+    If the string is "HelloWorld123" (13 characters):
+
+        Precision .10 truncates to "HelloWorld" (first 10 chars).
+
+        Length is now 10, which is more than the minimum width 6, so no padding needed.
+        Output: "HelloWorld"
+
+Summary:
+
+%-6.10s prints up to 10 characters of a string, left-justified in a field at least 6 characters wide, 
+padding spaces on the right if shorter than 6 chars.
+

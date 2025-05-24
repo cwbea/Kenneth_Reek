@@ -1,0 +1,47 @@
+#include <stdio.h>
+
+#define MAX(a,b) ((a) > (b) ? (a) : (b))        // Returns max of a, b
+#define SQUARE(x) ((x) * (x))                   // Squares x safely
+#define DOUBLE(x) ((x) + (x))                   // Doubles x
+
+int main() {
+    int x, y, z;
+
+    // --- a ---
+    y = 2;
+    z = 3;
+    x = MAX(y, z);    // => MAX(2, 3) => ((2) > (3) ? (2) : (3)) => 3
+    printf("a: %d %d %d\n", x, y, z); // a: 3 2 3
+
+    // --- b ---
+    y = 2;
+    z = 3;
+    x = MAX(++y, ++z); // y=3, z=4 -> MAX(3,4) => 4
+    printf("b: %d %d %d\n", x, y, z); // b: 4 3 4
+    //  Dangerous: ++y and ++z may be evaluated more than once if macro not used carefully
+
+    // --- c ---
+    x = 2;
+    y = SQUARE(x);       // ((2) * (2)) = 4
+    z = SQUARE(x + 6);   // ((2 + 6) * (2 + 6)) = (8 * 8) = 64
+    printf("c: %d %d %d\n", x, y, z); // c: 2 4 64
+
+    // --- d ---
+    x = 2;
+    y = 3;
+    z = MAX(5 * DOUBLE(x), ++y);
+    // DOUBLE(x) => ((2)+(2)) => 4 => 5*4 = 20
+    // ++y = 4 => MAX(20,4) = 20
+    printf("d: %d %d %d\n", x, y, z); // d: 2 4 20
+
+    return 0;
+}
+
+
+Key Lessons:
+
+    Always parenthesize macro parameters to avoid precedence bugs.
+
+    Be cautious with expressions that have side effects (like ++y) inside macros — they may be evaluated multiple times.
+
+    Inline macros are not functions — the preprocessor blindly replaces text.

@@ -1,0 +1,36 @@
+If a call to fclose fails and the program does not check the return value, 
+the program may silently ignore a critical error, leading to:
+ Potential Consequences:
+
+    Data Loss
+
+        fclose flushes the output buffer to disk.
+
+        If it fails and you don’t detect it, some written data might never actually reach the file.
+
+    Resource Leak
+
+        On some systems, fclose also deallocates file-related resources.
+
+        If the failure is ignored, the program may exhaust file descriptors over time.
+
+    Corrupted or Incomplete Files
+
+        Especially dangerous for financial, log, or config files.
+
+        Ignoring the error can result in partially written or invalid files.
+
+    No Feedback to User or Logs
+
+        If fclose fails (e.g., due to a full disk, hardware error, or network issue with remote files), 
+        and the return value isn’t checked, the user is left unaware of the problem.
+
+✅ Correct Usage:
+
+Always check the return value of fclose():
+
+if (fclose(fp) != 0) {
+    perror("fclose failed");
+    exit(EXIT_FAILURE);
+}
+

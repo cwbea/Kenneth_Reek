@@ -1,0 +1,24 @@
+    %.3f means: print the number with 3 digits after the decimal point, rounding to the nearest value at the third decimal place.
+
+        So a number like 1.4047 rounds to 1.405.
+
+    %.2f means: print the number with 2 digits after the decimal point, rounding to the nearest value at the second decimal place.
+
+        The same number (1.4047) rounds to 1.40 (because 0.4047 rounded to two decimals is 0.40).
+
+Why does it look inconsistent?
+
+    The value being printed is a floating-point number stored internally with limited precision (binary floating-point).
+ The actual stored number may be slightly different from what you expect (e.g., it could be 1.4049999999).
+
+    When you print with more decimal places (%.3f), the rounding shows the number as 1.405.
+
+    When printing fewer decimal places (%.2f), it rounds differently, showing 1.40.
+
+Summary:
+
+    The difference is due to rounding at different decimal places, not truncation or error.
+
+    Floating-point numbers are approximations, so rounding output changes based on how many digits you print.
+
+    This is normal and expected behavior.

@@ -1,0 +1,3 @@
+No significant difference in performance in most cases. 
+The conditional operator (?:) is not inherently faster than an if-else statement. 
+Both are typically compiled to very similar machine instructions by modern compilers.

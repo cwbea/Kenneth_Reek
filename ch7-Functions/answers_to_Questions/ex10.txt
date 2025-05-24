@@ -1,0 +1,25 @@
+fibonacci(1) = 1, Function calls: 2
+fibonacci(2) = 1, Function calls: 3
+fibonacci(3) = 2, Function calls: 5
+fibonacci(4) = 3, Function calls: 9
+fibonacci(5) = 5, Function calls: 15
+fibonacci(6) = 8, Function calls: 25
+fibonacci(7) = 13, Function calls: 41
+fibonacci(8) = 21, Function calls: 67
+fibonacci(9) = 34, Function calls: 109
+fibonacci(10) = 55, Function calls: 177
+
+
+every call to fibonacci(n) results in two further calls, 
+which doubles the calls for each level of recursion.
+
+T(n) ≈ 2^n
+
+For fibonacci(11): The number of calls will be roughly 2^11 = 2048.
+
+For fibonacci(25): The number of calls will be roughly 2^25 ≈ 33,554,432.
+
+For fibonacci(50): The number of calls will be roughly 2^50 ≈ 1.12 * 10^15.
+
+the number of calls grows very quickly as n increases, which is one of the 
+reasons why the recursive implementation of Fibonacci is inefficient for large n.

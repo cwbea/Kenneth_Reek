@@ -1,0 +1,27 @@
+#include <stdio.h>
+
+static int a = 1;    // static int a with external linkage, accessible to x but not y
+static char b = 2;   // static char b with no linkage, accessible to x and y
+
+void x() {
+    int c;          // automatic int c, local to x
+    static float d; // static float d, local to x, retains value across calls
+
+    // Example usage of variables
+    printf("Inside x: a = %d, b = %c, c = %d, d = %f\n", a, b, c, d);
+    d = 3.14f;  // Initializing d to some value inside x
+}
+
+void y() {
+    // y can access b but not a (due to a's static storage class with external linkage)
+    printf("Inside y: b = %c\n", b);
+    // Cannot access a, c, or d from here
+}
+
+int main() {
+    x();   // Call x, which will use a, b, c, and d
+    y();   // Call y, which will use b only
+    x();   // Call x again, to show that static d retains its value
+    return 0;
+}
+

@@ -1,0 +1,20 @@
+The stack frame in a typical C runtime environment on Linux (especially on x86 or x86-64 architectures) represents how function 
+calls manage their local variables, return addresses, and function arguments. The stack frame is crucial for tracking function 
+execution and ensuring correct returns after function calls.
+ Basic Structure of a Stack Frame
+
+Here’s a simplified view of a stack frame during a function call:
+
+Higher memory addresses
+|-----------------------------|
+| Function arguments (if any)|
+|-----------------------------|
+| Return address             |
+|-----------------------------|
+| Old base pointer (EBP/RBP) |
+|-----------------------------|
+| Local variables            |
+|-----------------------------|
+| Temporary data (spill, etc)|
+Lower memory addresses
+

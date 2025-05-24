@@ -1,0 +1,20 @@
+If a function is called before the compiler has seen its prototype, 
+and the types of the arguments in the call do not match the function’s formal parameters, 
+the compiler:
+
+1. Does not perform type checking.
+   Since it hasn’t seen the prototype, 
+   it has no way of knowing what types the function expects.
+
+2. Applies default argument promotions, like:
+   float is promoted to double
+   char and short are promoted to int
+   This is known as the "default argument promotions" in K&R (Kernighan & Ritchie) style C.
+
+3. May result in incorrect behavior or undefined behavior.
+   If the arguments passed are not compatible with what the function actually expects 
+   (e.g., passing a double where the function expects a pointer), it could lead to:
+
+    i. Wrong results
+    ii. Memory access errors
+    iii. Crashes

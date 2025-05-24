@@ -1,0 +1,6 @@
+Feature 		| array1 (Parameter) 		| array2 (Local Variable)
+
+What it really is 	| A pointer to int 		| An actual array of 10 ints
+Allocated memory 	| No (points to caller data) 	| Yes (stack memory)
+sizeof result 		| Size of pointer (e.g. 8) 	| Size of full array (e.g. 40)
+Modifiable? 		| Points to caller’s array 	| Only local to the function

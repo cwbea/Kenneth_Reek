@@ -1,0 +1,2 @@
+Because in C, pointers are just addresses in memory, 
+and addresses are not portable or reliable as constants — especially at compile time.

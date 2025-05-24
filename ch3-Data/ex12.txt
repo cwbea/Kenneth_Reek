@@ -1,0 +1,5 @@
+Fragment 1 is safer because it initializes a right away, meaning there is no 
+chance of using a before it has been assigned a value.
+
+Fragment 2 can be problematic if the variable a is used before it is assigned 25,
+ because accessing an uninitialized variable can lead to undefined behavior.

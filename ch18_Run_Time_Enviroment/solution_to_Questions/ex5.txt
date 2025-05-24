@@ -1,0 +1,4 @@
+Yes, it can be implemented. This is exactly how modern systems like Linux x86_64 already work: the System V AMD64 ABI passes 
+the first 6 integer/pointer arguments and first 8 floating-point arguments directly in registers (rdi, rsi, etc.), avoiding 
+unnecessary stack use. This is done by the compiler, which generates code to load arguments into the appropriate registers 
+before calling the function.

@@ -1,0 +1,42 @@
+Yes, allocating arrays dynamically can help minimize stack space usage, and here's why:
+✅ 1. Arrays: Allocate Dynamically to Save Stack Space
+
+When you declare an array locally (on the stack), like this:
+
+int arr[100000];  // 100,000 ints = ~400 KB on the stack
+
+    You're using a large chunk of the limited stack space, which is often restricted (e.g., 8MB by default on many systems).
+
+    This can cause stack overflow in deep recursion or with large arrays.
+
+But if you dynamically allocate the array on the heap:
+
+int *arr = malloc(100000 * sizeof(int));
+
+    The memory comes from the heap, which is typically much larger than the stack.
+
+    This helps avoid stack overflow and keeps the stack frame small.
+
+⚠️ 2. Scalars (e.g., int, char, float)
+
+For simple scalars like:
+
+int a;
+char b;
+
+    These take up very little space (4 bytes for int, 1 byte for char).
+
+    Allocating them dynamically like:
+
+int *a = malloc(sizeof(int));
+
+... adds overhead (pointer + heap metadata) and is less efficient.
+
+🔽 So for scalars:
+
+    Do not allocate dynamically unless you specifically need to share them, keep them beyond scope, or interact with APIs requiring pointers.
+
+✅ Summary:
+Variable Type	Stack or Heap?	Recommendation
+Large Arrays	Heap (use malloc)	✔ Helps minimize stack usage
+Small Scalars	Stack (normal usage)	✔ More efficient unless special circumstances

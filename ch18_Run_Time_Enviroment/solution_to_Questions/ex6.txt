@@ -1,0 +1,6 @@
+No, it’s not possible by default on Linux x86_64, because the System V AMD64 ABI uses the caller-cleanup convention — 
+the caller removes stack arguments after the call.
+
+To make the called function clean up the stack, you'd need to use a different calling convention, 
+like stdcall (used in 32-bit Windows), where the callee does the cleanup. This would require compiler 
+and ABI support to change the calling convention.

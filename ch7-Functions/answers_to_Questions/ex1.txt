@@ -1,0 +1,5 @@
+A stub is a placeholder function that allows the rest of the program to compile
+and run, even though the function is not yet implemented.
+Empty stubs are a good starting point, but making them print messages, 
+return dummy values, or log calls makes them far more useful during testing,
+debugging, and collaboration—so you know where the gaps are and what’s being called.

@@ -1,0 +1,67 @@
+✅ 1. Declaration Only (Tag Name, No Variables)
+
+struct Point {
+    int x;
+    int y;
+};
+
+Purpose:
+
+    Defines a structure type named Point.
+
+    No variables are declared here.
+
+    Can be used later to declare variables using:
+
+    struct Point p1;
+
+✅ 2. Declaration + Variable(s)
+
+struct Point {
+    int x;
+    int y;
+} p1, p2;
+
+Purpose:
+
+    Defines a structure type and declares variables p1 and p2 of that type.
+
+    Useful when you need both the type and immediate variables.
+
+✅ 3. Anonymous Structure with Variables
+
+struct {
+    int x;
+    int y;
+} p1;
+
+Purpose:
+
+    Declares a structure without a tag name (anonymous).
+
+    Declares variable p1 of this unnamed structure type.
+
+    You cannot declare another variable of the same structure later because it has no name.
+
+✅ 4. Declaration with Typedef (Using typedef)
+
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+Purpose:
+
+    Defines an anonymous structure but uses typedef to name it Point.
+
+    You can now declare variables without the struct keyword:
+
+    Point p1;
+
+✅ 5. Tagged Structure with Typedef
+
+typedef struct Point {
+    int x;
+    int y;
+} Point;
+

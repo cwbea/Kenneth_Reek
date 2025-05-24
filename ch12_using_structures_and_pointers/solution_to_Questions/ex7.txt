@@ -1,0 +1,7 @@
+Using the 26-list concordance structure:
+
+    Reduces average search time significantly.
+
+    Especially effective for large word sets.
+
+    Helps keep insertion and search localized, which is beneficial even with simple data structures like linked lists.

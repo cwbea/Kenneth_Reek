@@ -1,0 +1,40 @@
+On Linux x86_64 systems, arguments and return values in C (and most compiled languages) are handled according to the System V AMD64 ABI — 
+the standard Application Binary Interface for this platform.
+ Function Argument Passing
+ Registers used for arguments (in order):
+
+For functions taking up to six integer/pointer arguments:
+Argument Position	Register
+1st	rdi
+2nd	rsi
+3rd	rdx
+4th	rcx
+5th	r8
+6th	r9
+
+For floating-point arguments (e.g., float, double), the registers xmm0 through xmm7 are used.
+➕ Additional arguments:
+
+    If there are more than 6 integer/pointer or 8 floating-point arguments, the extra ones are passed on the stack.
+
+    Structs and large data types may also be passed via the stack or via pointers, depending on size.
+
+ Function Return Values
+ Simple return values:
+Return Type			How It's Returned
+int, char, pointer, etc.	Via rax register
+float, double			Via xmm0 register
+ Structs and large data:
+
+    If a function returns a large struct or union, it is typically returned via a hidden pointer 
+(the caller allocates memory, and passes the address as a hidden first argument — often in rdi).
+
+
+ Summary Table
+Item			Location
+Integer/pointer args	rdi, rsi, rdx, rcx, r8, r9
+Float/double args	xmm0–xmm7
+Extra args		Stack
+Return (int/pointer)	rax
+Return (float/double)	xmm0
+Large structs (return)	Via hidden pointer argument

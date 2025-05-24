@@ -1,0 +1,21 @@
+Sometimes, you want to do nothing when a condition is true, but do something when it's false.
+
+if (condition)
+{
+    // do nothing
+}
+else
+{
+    // statements when condition is false
+    printf("Condition is false!\n");
+}
+
+An alternative way in doing this would be to use a negated condition with no else
+
+if (!condition)
+{
+    // statements when condition is false
+    printf("Condition is false!\n");
+}
+
+

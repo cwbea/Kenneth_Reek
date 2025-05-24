@@ -1,0 +1,40 @@
+1. __FILE__
+
+Meaning: The name of the current source file (as a string).
+Use: Useful for logging and debugging to show where a log message or error originated.
+
+fprintf(stderr, "Error in file %s\n", __FILE__);
+
+2. __LINE__
+
+Meaning: The current line number in the source file.
+Use: Commonly used in error messages to pinpoint the exact line an error occurred.
+
+fprintf(stderr, "Error at line %d\n", __LINE__);
+
+3. __DATE__
+
+Meaning: The date when the source file was compiled (format: "Mmm dd yyyy").
+Use: Can be used to display or log the build date in version info.
+
+printf("Build date: %s\n", __DATE__);
+
+4. __TIME__
+
+Meaning: The time when the file was compiled (format: "hh:mm:ss").
+Use: Can be shown in diagnostics or splash screens to verify build time.
+
+printf("Build time: %s\n", __TIME__);
+
+5. __STDC__
+
+Meaning: Defined as 1 if the compiler conforms to the ANSI C standard.
+Use: Useful to conditionally compile ANSI-compliant code only when supported.
+
+#ifdef __STDC__
+    printf("Using ANSI C compiler\n");
+#else
+    printf("Using non-ANSI compiler\n");
+#endif
+
+These macros are primarily used for diagnostics, logging, build metadata, and compiler-specific adaptations.

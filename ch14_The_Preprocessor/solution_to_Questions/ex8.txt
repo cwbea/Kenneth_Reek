@@ -1,0 +1,77 @@
+Problem: Circular Header Inclusion
+
+You have two header files:
+header1.h
+
+#ifndef _HEADER1_H
+#define _HEADER1_H
+#include "header2.h"
+other declarations
+#endif
+
+header2.h
+
+#ifndef _HEADER2_H
+#define _HEADER2_H
+#include "header1.h"
+other declarations
+#endif
+
+❗ What’s Wrong?
+
+Even though you are using include guards correctly (#ifndef, #define, #endif), 
+the headers include each other, which can cause problems when dependencies exist between declarations in the two files.
+
+What Happens During Compilation?
+
+Let’s say a .c file includes header1.h.
+
+    The preprocessor includes header1.h
+
+    header1.h includes header2.h
+
+    header2.h tries to include header1.h again
+
+    But _HEADER1_H is already defined, so the include guard prevents reprocessing, and header1.h is skipped
+
+So far, this seems OK. BUT...
+
+If either header relies on declarations from the other before the include completes, you will run into incomplete types or undefined symbols.
+  Potential Issues:
+
+    Incomplete type errors: if header1.h uses a type defined in header2.h, 
+    but header2.h also depends on header1.h, the full definition might not be available.
+
+    Compiler errors: especially with structs or typedefs used before their definition.
+
+  How to Fix It
+
+There are a few ways to avoid circular inclusion:
+1. Use forward declarations instead of includes where possible.
+
+If header1.h needs only a pointer to a type defined in header2.h, do:
+
+// header1.h
+#ifndef _HEADER1_H
+#define _HEADER1_H
+
+// Forward declaration
+struct TypeFromHeader2;
+
+void foo(struct TypeFromHeader2 *ptr);
+
+#endif
+
+2. Restructure your headers to break circular dependencies.
+
+Consider moving common types/declarations into a shared header like common.h that both header1.h and header2.h can include.
+3. Include headers only in source files (.c) if not absolutely needed in headers.
+
+ Summary
+Issue				Description
+❌ Circular includes		header1.h and header2.h include each other
+❌ Potential incomplete types	If either uses types before they are defined
+✅ Use forward declarations	Prevent full dependency between headers
+✅ Restructure header files	Split shared definitions into a third header
+
+Proper header design avoids tangled dependencies and makes code easier to maintain.

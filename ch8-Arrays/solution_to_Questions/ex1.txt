@@ -1,0 +1,44 @@
+Expression 	       | Value or Explanation				//int *ip = ints + 3;
+
+ints 		       | Address of the first element → 100
+
+ints + 4 	       | Address of ints[4] → 100 + 4*4 = 116
+
+ip[4] 		       | ip[4] is ints[7] → Value is 80
+
+ip + 4 		       | Address of ints[7] → ip points to ints[3], so +4 → ints[7] → 128
+
+*ip + 4 	       | *ip is ints[3] = 40 → 40 + 4 = 44
+
+*(ints + 4) * (ip + 4) | Invalid. *(ints + 4) is ints[4] = 50, but (ip + 4) is a pointer,
+       			not a value.  Corrected: *(ints + 4) * *(ip + 4) = 50 * 80 = 4000
+
+
+ints[-2] 	       | Undefined behavior (out-of-bounds access)
+
+&ints                  | Address of entire array → Same as ints, so 100, but type is int (*)[20]
+
+&ints[4]               | Address of ints[4] → 116
+
+&ints + 4              | Treat &ints as type int (*)[20], so &ints + 4 moves 4 * sizeof(int[20]) = 100 + 4×80 = 420
+
+&ints[-2]              | Undefined behavior (out-of-bounds)
+
+
+Expression 	       | Value or Explanation
+
+ip 	               | Points to ints[3] → 112
+
+ints[4] 	       | Value at index 4 → 50
+
+*ints + 4	       | Value at ints[0] plus 4 → 10 + 4	14
+
+ip[-2] 		       | ints[1] → 20
+
+&ip 		       | Address of pointer ip variable (depends on stack), say X
+
+&ip[4] 		       | Address of ints[7] → 128
+
+&ip + 4 	       | Address of ip plus 4 pointers → &ip + 4 * 4 bytes = X + 16
+
+&ip[-2] 	       | Address of ints[1] → 108	

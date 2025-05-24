@@ -1,0 +1,10 @@
+// Declare an enumeration type for coins
+enum Coin {
+    PENNY = 1,     // 1 cent
+    NICKEL = 5,    // 5 cents
+    DIME = 10,     // 10 cents
+    QUARTER = 25,  // 25 cents
+    HALF_DOLLAR = 50, // 50 cents
+    DOLLAR = 100      // 100 cents
+};
+

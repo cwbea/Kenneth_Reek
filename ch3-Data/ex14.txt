@@ -1,0 +1,5 @@
+False.
+
+A variable declared in a block (such as inside a function or within a loop) has local scope,
+ meaning it can only be accessed within that block or any inner blocks, but not outside.
+ In other words, a variable declared in a block cannot be accessed outside of that block or function.

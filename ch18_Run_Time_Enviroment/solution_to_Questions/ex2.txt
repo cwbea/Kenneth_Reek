@@ -1,0 +1,1 @@
+No strict limit, but at least 2048 characters are significant by default in modern GCC.

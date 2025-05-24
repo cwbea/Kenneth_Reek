@@ -1,0 +1,183 @@
+Expression 1: array
+
+Address (value):
+array points to the beginning of the array. So the address is simply:
+
+1000
+
+Type of x:
+The type of array is the type of a pointer to its first element. So:
+
+int x[2][3][6];
+
+Or, if you're assigning to a pointer:
+
+int (*x)[2][3][6];
+
+🔹 Expression 2: array + 2
+
+Address (value):
+This means: move 2 blocks forward, where each block is [2][3][6]. Each block has:
+
+2×3×6 = 36 integers
+36 × 4 bytes = 144 bytes
+
+So skipping 2 blocks:
+
+1000 + 2×144 = 1000 + 288 = 1288
+
+Type of x:
+Still a pointer to a 3D block [2][3][6], so:
+
+int (*x)[2][3][6];
+
+🔹 Expression 3: array[3]
+
+Address (value):
+array[3] means the 4th top-level element. Each top-level element is a [2][3][6] block (36 integers, 144 bytes). So:
+
+1000 + 3×144 = 1000 + 432 = 1432
+
+Type of x:
+You're accessing array[3], which is a [2][3][6] block.
+
+int x[2][3][6];
+
+Or pointer version:
+
+int (*x)[3][6];
+
+🔹 Expression 4: array[2] - 1
+
+Address (value):
+array[2] is the third block (at offset 2). Each [2][3][6] block is 144 bytes. So array[2]:
+
+1000 + 2×144 = 1000 + 288 = 1288
+
+Now array[2] - 1 means go one unit backward, but what is a unit here?
+
+    array[2] is of type int (*)[3][6] (pointer to [3][6])
+
+    So array[2] - 1 moves back by 1×[3][6] block
+
+    [3][6] = 18 ints = 72 bytes
+
+So:
+
+1288 - 72 = 1216
+
+Type of x:
+Since you are subtracting from array[2], which is a pointer to [3][6], the resulting type is:
+
+int (*)[3][6]
+
+🔹 Expression 5: array[2][1]
+
+Address (value):
+array[2][1] = second major block (2), second element in the [2] dimension (1). So:
+
+    Offset = (2 × 2 + 1) = 5 blocks of [3][6]
+
+    Each [3][6] = 18 ints = 72 bytes
+
+So:
+
+1000 + 5×72 = 1000 + 360 = 1360
+
+Type of x:
+Accessing array[2][1] gives a [3][6] block:
+
+int x[3][6];
+
+Or pointer:
+
+int (*x)[6];
+
+🔹 Expression 6: array[1][0] + 1
+
+Address (value):
+array[1][0] is the block at [1][0], which is a [6] array.
+
+So first, find the base address of array[1][0]:
+
+    Index: (1×2 + 0) = 2 blocks of [3][6] = 2×18 ints = 72 bytes
+
+1000 + 72 = 1072
+
+Now +1 moves one int[6] forward (since array[1][0] is a int [6]).
+
+    Move by 1 int: 4 bytes
+
+1072 + 4 = 1076
+
+Type of x:
+Adding +1 to array[1][0], which is an int*:
+
+int *x;
+
+🔹 Expression 7: array[1][0][2]
+
+Address (value):
+This accesses the 3rd element (index 2) of [6] at array[1][0].
+
+Steps:
+
+    Get offset index:
+    array[1][0][2] = (1×2×3×6 + 0×3×6 + 2×6) = 36 + 0 + 12 = 48
+
+    Address:
+    1000 + 48×4 = 1000 + 192 = 1192
+
+Type of x:
+It accesses a single int.
+
+int x;
+
+🔹 Expression 8: array[0][1][0] + 2
+
+Address (value):
+You're at array[0][1][0] and moving 2 ints forward.
+
+First, compute offset for array[0][1][0]:
+
+    Index = 0×36 + 1×18 + 0×6 = 18
+
+    Address = 1000 + 18×4 = 1000 + 72 = 1072
+
+Then +2 → 2 ints forward → 8 bytes:
+
+1072 + 8 = 1080
+
+Type of x:
+array[0][1][0] is of type int *, and so is array[0][1][0] + 2.
+
+int *x;
+
+🔹 Expression 9: array[3][1][2][5]
+
+Address (value):
+Use the full formula:
+
+    i = 3, j = 1, k = 2, l = 5
+
+    Offset = (3×36 + 1×18 + 2×6 + 5) = (108 + 18 + 12 + 5) = 143
+
+    Address = 1000 + 143×4 = 1000 + 572 = 1572
+
+Type of x:
+This accesses a single int.
+
+int x;
+
+🔹 Expression 10: &array[3][1][2][5]
+
+Address (value):
+Same as the above expression, it's just getting the address of that int.
+
+1572
+
+Type of x:
+Now it's a pointer to that int.
+
+int *x;
+

@@ -1,0 +1,28 @@
+When using the %f format specifier in C (e.g., printf("%f", value);), the last digit 
+that is printed is rounded, not simply truncated.
+Details:
+
+    The default behavior of %f prints six digits after the decimal point unless you 
+    specify otherwise (e.g., %.2f for two digits).
+
+    The rounding is based on the next unprinted digit:
+
+        If the next digit is 5 or higher, the last printed digit is rounded up.
+
+        If it's 4 or lower, it remains the same (rounded down).
+
+ Example:
+
+#include <stdio.h>
+
+int main() {
+    double val = 3.141592653589;
+    printf("%.4f\n", val);  // Output: 3.1416
+    return 0;
+}
+
+    Here, .141592... → .1416 (because the 5 in the 5th decimal place causes rounding up).
+
+ Summary:
+
+    The last digit printed by %f is rounded, not truncated.

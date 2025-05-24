@@ -1,0 +1,3 @@
+If memory location 0 actually contains a value (like 0) and can be safely accessed,
+ dereferencing a NULL pointer might appear to work, which is dangerous because it 
+hides programming errors and leads to undefined, inconsistent, or hard-to-find bugs.

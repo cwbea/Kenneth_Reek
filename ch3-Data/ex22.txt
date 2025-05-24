@@ -1,0 +1,5 @@
+Local variables (int a = 5; inside a function) have a limited scope,
+ are re-initialized every time the function is called, and are destroyed when the function exits.
+
+Global variables (int a = 5; outside of a function) have a global scope,
+ exist for the entire program duration, and retain their value throughout the program.

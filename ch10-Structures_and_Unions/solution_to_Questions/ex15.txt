@@ -1,0 +1,13 @@
+| Feature                             | **First Version** (Pointer)                            | **Second Version** (Fixed-size Array)             |
+| ----------------------------------- | ------------------------------------------------------ | ------------------------------------------------- |
+| **String Member**                   | `char *s;` (pointer)                                   | `char s[MAX_STRING_LENGTH];` (array)              |
+| **Memory for String**               | Stores a pointer only; actual string stored elsewhere  | Allocates full array inside the union             |
+| **Size of Structure**               | Smaller if strings are short or rarely used            | Larger, due to reserved space for `s[]`           |
+| **String Flexibility**              | Dynamic, can point to any size (heap, etc.)            | Limited to `MAX_STRING_LENGTH` characters         |
+| **String Memory Management**        | Must `malloc`/`free` (manual management)               | No need for dynamic allocation                    |
+| **Order of Members** (`type` first) | Not significant functionally, but better for alignment | Better design: allows `type` to be accessed first |
+
+
+The first version is more space-efficient and flexible, but requires manual memory management for strings.
+
+The second version is easier to use and avoids manual memory management, but is less flexible and can waste memory if string variables are rare or short.

@@ -1,0 +1,52 @@
+If all of the assert statements were removed from the stack module that uses a static array, several critical issues could arise:
+What assert does:
+
+assert(expression); checks that the expression is true during runtime.
+If it’s false, the program stops and shows a message — helping catch bugs early.
+ Without assertions:
+
+    Stack overflow is possible during push()
+
+        If push() is called when the stack is already full (i.e., top_element == STACK_SIZE - 1), it will write past the end of the array.
+
+        This causes undefined behavior, such as memory corruption, crashing, or overwriting other program data.
+
+    Stack underflow is possible during pop() or top()
+
+        If pop() or top() is called when the stack is empty (i.e., top_element == -1), it will access invalid memory.
+
+        This could lead to:
+
+            Crashes
+
+            Garbage values returned
+
+            Security vulnerabilities
+
+    Misuse during uninitialized or destroyed state
+
+        In dynamically allocated versions, assert(stack != NULL) ensures the stack is initialized before use.
+
+        Without it, using an uninitialized or destroyed stack may lead to segmentation faults.
+
+    Harder to debug logic errors
+
+        Assertions catch incorrect usage during development.
+
+        Without them, subtle bugs might remain hidden until they cause major failures — making debugging much harder.
+
+ Why assertions matter:
+
+They act as internal safety checks to ensure the module is being used correctly.
+Removing them:
+
+    Makes the program less robust
+
+    Increases the risk of runtime errors
+
+    Makes error detection harder during testing
+
+ Conclusion:
+
+Removing all assertions from the static array-based stack module makes the code unsafe and error-prone.
+ Assertions are essential for catching logic errors early, especially during development and testing.

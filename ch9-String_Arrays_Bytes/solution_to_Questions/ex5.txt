@@ -1,0 +1,18 @@
+you're taking an important safety step by reserving space for the null terminator. But there's a small detail that matters here.
+    strncpy copies up to BSIZE - 1 characters from some_other_string into buffer.
+
+    If some_other_string is shorter than BSIZE - 1, it will pad the rest with '\0' bytes.
+
+    If it's equal to or longer, it will not null-terminate the destination string.
+
+⚠️ Potential Problem:
+
+If some_other_string has BSIZE - 1 or more characters, buffer will not be null-terminated, 
+leading to undefined behavior when you use it as a C string (e.g., in printf, strlen, etc.).
+✅ Correct and Safe Usage:
+
+To make sure buffer is always null-terminated, add this line right after:
+
+buffer[BSIZE - 1] = '\0';
+
+This guarantees that the last byte is '\0', even if the input string is too long.

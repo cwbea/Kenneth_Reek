@@ -1,0 +1,34 @@
+char *array[10];    // array is an array of 10 pointers to char
+char **ptr = array; // ptr is a pointer to a pointer to char, initialized to point to array[0]
+
+ What does ptr point to?
+
+    array is an array of 10 char *, so array[0] is of type char *.
+
+    ptr is a char **, initialized to point to array, which is essentially the same as &array[0].
+
+So:
+
+ptr == &array[0]
+
+What happens when we do ptr + 1?
+
+    ptr is a pointer to a pointer to a character (char **).
+
+    Adding 1 to ptr makes it point to the next element in the array — &array[1].
+
+So:
+
+ptr + 1 == &array[1]
+
+Final Answer:
+
+    Adding one to ptr makes it point to the next pointer in the array — that is, ptr will now point to array[1].
+
+ Summary:
+
+Expression	Points to
+ptr	&array[0]
+ptr + 1	&array[1]
+*ptr	array[0] (a char *)
+**ptr	The first character of the string pointed to by array[0]

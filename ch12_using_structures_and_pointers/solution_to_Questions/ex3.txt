@@ -1,0 +1,18 @@
+Where would the insertion function in Program 12.3 put a node with a duplicate value?
+
+In the current implementation of the function, a node is inserted before the first node with a value greater than or equal to new_value. This means that if there is a duplicate value already present in the list, the insertion function would insert the duplicate node before the first occurrence of the same value (since the condition current->value < new_value doesn't allow the insertion of duplicate values).
+What would be the effect of changing the comparison from < to <=?
+
+Changing the comparison from:
+
+while( (current = *linkp) != NULL && current->value < new_value )
+
+to:
+
+while( (current = *linkp) != NULL && current->value <= new_value )
+
+Effect:
+
+    Insertion of duplicate values: With the <= comparison, the loop will also stop when the current node's value is equal to new_value, meaning that the new node will be inserted at the first occurrence of the duplicate value instead of before it.
+
+        So, duplicates will now be allowed in the list and will be inserted right before the node with the same value.

@@ -1,0 +1,18 @@
+    Initial counter = 1
+
+    First call → ++counter → counter = 2 → returns 2
+
+    Second call → ++counter → counter = 3 → returns 3
+
+    Third call → ++counter → counter = 4 → returns 4
+
+So:
+
+answer = 2 - 3 * 4;
+answer = 2 - 12;
+answer = -10;
+
+ Final Output:
+
+-10
+

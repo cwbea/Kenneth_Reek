@@ -1,0 +1,4 @@
+When you compile this, the compiler allows it because C allows implicit conversion
+from larger to smaller data types, but data may be lost.
+When the program is ran, the actual value assigned to small_value is truncated to
+fit the range of short.

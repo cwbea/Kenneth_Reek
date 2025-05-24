@@ -1,0 +1,2 @@
+Yes, it is absolutely possible to sort the nodes in an unordered, singly linked list, 
+though it requires care due to the list’s structure (no backward traversal, only forward).

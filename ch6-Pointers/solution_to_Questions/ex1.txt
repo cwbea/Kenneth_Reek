@@ -1,0 +1,2 @@
+The machine doesn’t "know" the type of a value from its bits.
+It depends entirely on how you or the program chooses to interpret those bits.

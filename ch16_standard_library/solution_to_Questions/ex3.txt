@@ -1,0 +1,9 @@
+The program you posted prints 100 random numbers — each either 0 or 1
+
+rand() generates a pseudorandom number (usually between 0 and RAND_MAX, which is often 2,147,483,647).
+
+rand() % 2 gives you the remainder when the number is divided by 2 — which is always either 0 or 1.
+
+This simulates flipping a coin — 100 times.
+
+Each result is printed on its own line.

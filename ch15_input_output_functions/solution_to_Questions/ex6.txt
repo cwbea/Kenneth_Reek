@@ -1,0 +1,53 @@
+To determine how long the buffer must be to ensure the sprintf() call:
+
+sprintf(buffer, "%d %c %x", a, b, c);
+
+does not overflow, we must calculate the maximum number of characters that might be written to buffer.
+ Format Breakdown:
+
+    %d: signed decimal integer (a)
+
+    %c: character (b)
+
+    %x: unsigned hexadecimal integer (c)
+
+    Plus spaces between the format specifiers
+
+ Assumptions:
+
+    2-byte integers = 16 bits
+
+        Signed int range (%d): -32,768 to 32,767 → max 6 characters (-32768)
+
+        Character (%c): a single byte/character → 1 character
+
+        Unsigned int (%x): 0 to 65,535 in hex → 0xffff → max 4 characters
+
+    Spaces: 2 characters (" " between fields)
+
+    Null terminator (\0): 1 character
+
+ Total Required Buffer Length:
+
+    %d → up to 6 characters
+
+    ' ' → 1
+
+    %c → 1
+
+    ' ' → 1
+
+    %x → 4
+
+    \0 → 1
+
+Total = 6 + 1 + 1 + 1 + 4 + 1 = 14
+
+ Answer:
+
+The buffer must be at least 14 bytes long to guarantee that sprintf(buffer, "%d %c %x", a, b, c); 
+does not overflow it on a machine with 2-byte integers.
+
+Example:
+
+char buffer[14];  // Safe size

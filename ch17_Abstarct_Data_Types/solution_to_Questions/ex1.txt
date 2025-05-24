@@ -1,0 +1,14 @@
+The most appropriate Abstract Data Type (ADT) for this task is a Stack.
+ Reason:
+
+A Stack follows the Last-In, First-Out (LIFO) principle.
+So, if you push each name onto the stack as you read it, and then pop each name when printing, 
+the names will be printed in reverse order.
+
+ Example:
+
+Input:  Alice, Bob, Charlie
+
+Push Order (stack top to bottom): Charlie → Bob → Alice
+
+Pop and Print: Charlie, Bob, Alice

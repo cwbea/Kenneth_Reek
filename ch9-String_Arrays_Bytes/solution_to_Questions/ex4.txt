@@ -1,0 +1,5 @@
+The simplest way to copy 50 bytes from array x into array y in C is to use the memcpy function from <string.h>:
+
+#include <string.h>
+
+memcpy(y, x, 50);

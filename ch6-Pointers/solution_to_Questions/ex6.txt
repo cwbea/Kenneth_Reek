@@ -1,0 +1,3 @@
+The pointer pi is incremented before it is dereferenced, 
+which means the first element of the array (array[0]) is skipped, 
+and you're writing one element past the array bounds.

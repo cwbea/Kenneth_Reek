@@ -1,0 +1,155 @@
+Values:
+20, 15, 18, 32, 5, 91, -4, 76, 33, 41, 34, 21, 90
+Step-by-step insertion and structure:
+
+    Insert 20
+
+  20
+
+    Insert 15 (less than 20 → left)
+
+   20
+  /
+15
+
+    Insert 18 (less than 20, greater than 15 → right child of 15)
+
+   20
+  /
+15
+  \
+  18
+
+    Insert 32 (greater than 20 → right)
+
+   20
+  /  \
+15   32
+  \
+  18
+
+    Insert 5 (less than 20, less than 15 → left child of 15)
+
+    20
+   /  \
+  15   32
+ /  \
+5   18
+
+    Insert 91 (greater than 20, greater than 32 → right child of 32)
+
+    20
+   /  \
+  15   32
+ /  \    \
+5   18    91
+
+    Insert -4 (less than 20, less than 15, less than 5 → left child of 5)
+
+      20
+     /  \
+    15   32
+   /  \    \
+  5   18    91
+ /
+-4
+
+    Insert 76 (greater than 20, greater than 32, less than 91 → left child of 91)
+
+      20
+     /  \
+    15   32
+   /  \    \
+  5   18    91
+ /          /
+-4        76
+
+    Insert 33 (greater than 20, greater than 32, less than 91, less than 76 → left child of 76)
+
+      20
+     /  \
+    15   32
+   /  \    \
+  5   18    91
+ /          /
+-4        76
+           /
+          33
+
+    Insert 41 (greater than 20, greater than 32, less than 91, less than 76, greater than 33 → right child of 33)
+
+      20
+     /  \
+    15   32
+   /  \    \
+  5   18    91
+ /          /
+-4        76
+           /
+          33
+            \
+            41
+
+    Insert 34 (greater than 20, greater than 32, less than 91, less than 76, greater than 33, less than 41 → left child of 41)
+
+      20
+     /  \
+    15   32
+   /  \    \
+  5   18    91
+ /          /
+-4        76
+           /
+          33
+            \
+            41
+           /
+         34
+
+    Insert 21 (greater than 20, less than 32 → left child of 32)
+
+      20
+     /  \
+    15   32
+   /  \  /  \
+  5   18 21  91
+ /           /
+-4         76
+           /
+          33
+            \
+            41
+           /
+         34
+
+    Insert 90 (greater than 20, greater than 32, less than 91, greater than 76 → right child of 76)
+
+      20
+     /  \
+    15   32
+   /  \  /  \
+  5   18 21  91
+ /           /
+-4         76
+           /  \
+          33   90
+            \
+            41
+           /
+         34
+
+Final BST:
+
+          20
+         /  \
+       15    32
+      /  \   /  \
+     5   18 21  91
+    /             /
+  -4             76
+                 /  \
+                33   90
+                  \
+                  41
+                 /
+               34

@@ -1,0 +1,3 @@
+Arithmetic shift preserves the sign bit (i.e., fills leftmost bits with 1 for negative numbers).
+
+Logical shift fills leftmost bits with 0, regardless of the sign

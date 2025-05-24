@@ -1,0 +1,25 @@
+int const b[]
+
+is exactly the same as:
+
+int const *b
+
+Which means:
+
+    b is a pointer to constant integers.
+
+    You cannot modify the elements that b points to
+
+Example:
+
+void function(..., int const b[]) {
+    b[0] = 42; // ❌ ERROR: can't modify value pointed to by a const pointer
+    b++;       // ✅ OK: pointer itself is not const
+}
+
+Use 		| int const a 				| int const b[] or int const *b
+
+Applies to 	| A single integer, passed by value 	| An array of ints, passed as a pointer
+Const protects  | The value (copy) of a 		| The data being pointed to (not the pointer)
+Modifying inside| Not allowed 				| Not allowed to change data b[i]
+Usefulness 	| Mostly stylistic/documentation 	| Very useful for read-only arrays

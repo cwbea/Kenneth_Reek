@@ -1,0 +1,4 @@
+NO
+
+array[i + j]	*(array + i + j)	Value at index i + j in array
+i + j[array]	i + *(array + j)	Integer value of array[j] + i

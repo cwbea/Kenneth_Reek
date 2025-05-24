@@ -1,0 +1,4 @@
+Usage			Reason
+signed int		Explicitly state the type is signed (even though it’s the default)
+signed char		Avoids ambiguity (since plain char may be signed or unsigned)
+Portability & Clarity	Makes intent and behavior predictable across systems

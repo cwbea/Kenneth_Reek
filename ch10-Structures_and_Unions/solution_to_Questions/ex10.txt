@@ -1,0 +1,11 @@
+#include <stdint.h>
+
+typedef union {
+    uint32_t raw;
+    struct {
+        unsigned int fraction : 24;
+        unsigned int exponent : 7;
+        unsigned int sign     : 1;
+    } parts;
+} FloatParts;
+

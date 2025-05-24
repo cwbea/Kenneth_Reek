@@ -1,0 +1,45 @@
+✅ Advantages of returning a pointer to the end:
+
+    Efficient string building
+
+        When you're concatenating multiple strings in a loop or building a long string step by step,
+        getting the pointer to the end saves you from calling strlen() again.
+
+    char buffer[100] = "";
+    char *p = buffer;
+    p = strcpy(p, "Hello, ");
+    p = strcpy(p, "world!");
+
+        Here, each strcpy gives you the pointer to the end of the written string, ready for 
+        the next copy—efficient and neat.
+
+    Avoid repeated scanning
+
+        strcat has to find the end of the destination string each time. If you already know
+          the end (from a previous operation), skipping that scan saves time.
+
+        Returning the end pointer enables this optimization without extra strlen() calls.
+
+    Chaining and composability
+
+        It makes chaining operations more powerful and cleaner when building strings dynamically.
+
+❌ Disadvantages of returning a pointer to the end:
+
+    Breaks existing conventions
+
+        Standard C string functions return a pointer to the start of the destination for consistency and simplicity:
+
+    char *strcpy(char *dest, const char *src);
+
+    Changing that would introduce inconsistency and potentially confuse developers used to the standard behavior.
+
+Less useful in some contexts
+
+    In many common use cases, you do want the start of the string—e.g., for printing, further processing, 
+or returning it from a function. Returning the end would often require manually recalculating the start pointer
+, which isn't ideal.
+
+Could lead to misuse
+
+    Developers might accidentally use the returned pointer as the start of the string and get incorrect results or output.

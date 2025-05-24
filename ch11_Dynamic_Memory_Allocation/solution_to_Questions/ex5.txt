@@ -1,0 +1,96 @@
+ 1. Incorrect memory allocation:
+
+array = (int *)malloc( size * 2 );
+
+    ❌ This allocates size * 2 bytes, not size integers.
+
+    ✅ Correct way: multiply by sizeof(int):
+
+array = (int *)malloc(size * sizeof(int));
+
+🔴 2. Unsafe pointer arithmetic:
+
+array -= 1;
+
+    ❌ The pointer is adjusted backwards by one element, so that the user can access array[1] through array[size] instead of array[0] to array[size-1].
+
+    This is undefined behavior, because now array[0] is outside the bounds of the allocated memory.
+
+    ✅ Better solution: allocate size + 1 elements and use indexing from 1 safely:
+
+array = malloc((size + 1) * sizeof(int));
+
+🔴 3. Accessing and modifying out-of-bounds memory:
+
+for( i = 0; i <= size; i += 1 )
+    array[i] = 0;
+
+    With array -= 1, array[0] is invalid.
+
+    Even without the pointer adjustment, i <= size goes one past the end (should be i < size).
+
+    ✅ If indexing from 1, loop should be:
+
+for (i = 1; i <= size; i++) {
+    array[i] = 0;
+}
+
+🔴 4. Possible out-of-bounds access from input:
+
+while( scanf("%d", &i) == 1 )
+    array[i] += 1;
+
+    ❌ No check that i is within the allowed range (1 to size) — user could input 0, -1, or a large number.
+
+    ✅ Add bounds checking:
+
+while (scanf("%d", &i) == 1) {
+    if (i >= 1 && i <= size) {
+        array[i] += 1;
+    }
+}
+
+🔴 5. Returning a pointer to freed memory:
+
+free( array );
+return array;
+
+    ❌ Major error: the memory is freed, so returning the pointer makes it dangling.
+
+    ✅ Either:
+
+        Don’t free it (let the caller free it later), or
+
+        Return nothing and print inside the function
+
+✅ Fixed version of the function:
+
+#include <stdlib.h>
+#include <stdio.h>
+
+int *frequency(int size) {
+    int *array;
+    int i;
+
+    // Allocate memory for indices 1 to size
+    array = malloc((size + 1) * sizeof(int));
+    if (array == NULL) {
+        perror("malloc failed");
+        return NULL;
+    }
+
+    // Initialize counts to zero
+    for (i = 1; i <= size; i++) {
+        array[i] = 0;
+    }
+
+    // Read integers and count them
+    while (scanf("%d", &i) == 1) {
+        if (i >= 1 && i <= size) {
+            array[i]++;
+        }
+    }
+
+    // Do NOT free here — let caller handle it
+    return array;
+}

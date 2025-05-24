@@ -1,0 +1,13 @@
+Identifier		Storage Class		Scope		Linkage	Initial 	Value		Notes
+w			static			File		Internal	         5		File scope
+x			extern			File		External	Undefined (extern)	Declared, not defined
+y			extern	   Block (used in both funcs)	External	Undefined	       Must be defined elsewhere
+z			static			File		Internal	   0		        Static variables initialized to 0
+a, b, c (func1 params)	automatic	Function parameters	None	   Passed at runtime	          Local to func1
+c, d, e			automatic	Block inside func1	None	e = 1, others undefined	        c shadows param c — this is invalid
+d2, e2, w2		automatic	Inner block in func1	None		Undefined		Separate from outer ones
+b (register)		register	Inner block in func1	None		Undefined		Fast-access storage, no address
+a2, d2, x2		automatic	Block in func2		None		Undefined		Local variables
+b, c, d (static)	static		Block in func2		None		0 (static locals)	Retain value between calls
+func1			static		File			Internal	N/A			Only callable in this file
+func2			none (default)	File			External	N/A			Callable from other files

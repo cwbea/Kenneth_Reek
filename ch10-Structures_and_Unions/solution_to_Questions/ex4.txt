@@ -1,0 +1,53 @@
+❌ Error: Using structure tag abc as a variable
+
+struct abc {
+    int a;
+    int b;
+    int c;
+};
+...
+abc.a = 25;
+abc.b = 15;
+abc.c = -1;
+
+    struct abc is a type definition, not a variable.
+
+    You cannot assign values like abc.a = 25; unless abc is a variable of type struct abc.
+
+✅ Correct Version
+
+You need to declare a variable of type struct abc before using it:
+
+struct abc {
+    int a;
+    int b;
+    int c;
+};
+
+int main() {
+    struct abc abc_var;
+
+    abc_var.a = 25;
+    abc_var.b = 15;
+    abc_var.c = -1;
+
+    return 0;
+}
+
+Alternatively, with typedef:
+
+typedef struct {
+    int a;
+    int b;
+    int c;
+} abc;
+
+int main() {
+    abc abc_var;
+
+    abc_var.a = 25;
+    abc_var.b = 15;
+    abc_var.c = -1;
+
+    return 0;
+}

@@ -1,0 +1,15 @@
+In Fragment 1 (with const):
+
+   The variable a is initialized with a value (25), and once assigned,
+   its value cannot be changed anywhere in the program. 
+   Any subsequent attempt to modify a will result in a compilation error.
+
+In Fragment 2 (with const):
+
+    The declaration const int a; without initialization is invalid.
+    A const variable must be initialized at the time of declaration.
+   If you don't initialize it, the compiler will give an error because 
+   const guarantees that the variable will not change once it is set, 
+   and it must have an initial value when declared.
+
+    So, Fragment 2 would result in a compilation error unless it is modified to also initialize a when declared:

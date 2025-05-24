@@ -1,0 +1,2 @@
+If the x variable is declared as static int x; in a.c, other functions 
+within a.c can still access x without any problems, but you cannot access it from other files.

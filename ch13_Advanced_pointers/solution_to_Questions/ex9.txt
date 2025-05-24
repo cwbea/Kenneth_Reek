@@ -1,0 +1,76 @@
+char pathname[] = "/usr/temp/";
+...
+/*
+** Append the filename to the pathname.
+*/
+strcat( pathname, "abcde" );
+
+What's wrong?
+
+    Not enough space in pathname
+    The array pathname[] is initialized only with enough space to hold the string "/usr/temp/" and the null terminator ('\0'). That’s 10 bytes total.
+
+    Now you are using strcat() to append "abcde" (which needs 6 bytes, including '\0'). So in total, you need 16 bytes, but the array only has 10.
+
+    ➤ This leads to a buffer overflow, which is undefined behavior and may cause a crash or overwrite other memory.
+
+ How to fix it
+
+Option 1: Allocate a larger array
+
+If you know the maximum size ahead of time:
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char pathname[100] = "/usr/temp/";  // enough space for appended filename
+
+    strcat(pathname, "abcde");  // safe
+    printf("Full path: %s\n", pathname);
+
+    return 0;
+}
+
+Option 2: Use snprintf() instead
+
+Safer and avoids overflows:
+
+#include <stdio.h>
+
+int main() {
+    char pathname[100] = "/usr/temp/";
+    snprintf(pathname + strlen(pathname), 100 - strlen(pathname), "%s", "abcde");
+
+    printf("Full path: %s\n", pathname);
+    return 0;
+}
+
+Option 3: Dynamic allocation
+
+If you want to build paths dynamically and safely:
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+int main() {
+    const char *base = "/usr/temp/";
+    const char *file = "abcde";
+
+    char *pathname = malloc(strlen(base) + strlen(file) + 1);  // +1 for null terminator
+    if (pathname == NULL) return 1;  // check allocation
+
+    strcpy(pathname, base);
+    strcat(pathname, file);
+
+    printf("Full path: %s\n", pathname);
+    free(pathname);
+    return 0;
+}
+
+ Summary
+Issue				Details
+Insufficient array size		pathname[] only fits the original string, not extra
+Buffer overflow risk		strcat() can overwrite memory
+Proper fix		Use a bigger array, snprintf(), or dynamic memory

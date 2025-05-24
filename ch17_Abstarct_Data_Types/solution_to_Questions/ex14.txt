@@ -1,0 +1,26 @@
+Inserting values into a binary search tree (BST) in strictly ascending or strictly descending order 
+produces a highly unbalanced tree that essentially looks like a linked list.
+
+What happens to the tree structure?
+
+    Every new value becomes either the right child (if ascending) or left child (if descending) of the previous node.
+
+    The tree degenerates into a linear chain of nodes.
+
+Efficiency of searching in such a tree?
+
+    The height of the tree becomes n, where n = number of nodes.
+
+    Searching in a balanced BST is O(log n) on average.
+
+    Searching in this unbalanced, degenerated BST becomes O(n) in the worst and average cases because you may need 
+   to traverse almost every node like a linked list.
+
+Summary:
+Tree Type		Height		Search Time Complexity
+Balanced BST		~ log n		O(log n)
+Unbalanced BST             n            O(n) (linear)
+(ascending or descending insertions)
+
+So, searching an unbalanced BST formed by ascending/descending insertions has efficiency of O(n), 
+which is as bad as a simple linked list.

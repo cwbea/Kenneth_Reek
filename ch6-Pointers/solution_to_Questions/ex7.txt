@@ -1,0 +1,330 @@
+Scenario 1: All variables are integers
+
+We are treating variables as integer values stored at the given address.
+a. m
+
+    m is at address 1016, contents: 1008
+
+    ✅ R-value: 1008
+
+    ✅ L-value: 1016
+
+b. v + 1
+
+    v is at address 1092, contents: 1036
+
+    v + 1 = 1036 + 1 = 1037
+
+    ✅ R-value: 1037
+
+    ❌ L-value: N/A (it's an expression, not a variable)
+
+c. j - 4
+
+    j is at 1064, contents: 1000
+
+    j - 4 = 1000 - 4 = 996
+
+    ✅ R-value: 996
+
+    ❌ L-value: N/A
+
+d. a - d
+
+    a = contents at 1040 = 1028
+
+    d = contents at 1008 = 1016
+
+    a - d = 1028 - 1016 = 12
+
+    ✅ R-value: 12
+
+    ❌ L-value: N/A
+
+e. v - w
+
+    v = 1036 (from 1092)
+
+    w = 1060 (from 1012)
+
+    v - w = 1036 - 1060 = -24
+
+    ✅ R-value: -24
+
+    ❌ L-value: N/A
+
+
+
+🔹 Scenario 2: All variables are pointers to integers
+
+Now the contents at the addresses are treated as addresses pointing to integers.
+We dereference them to get the R-value.
+f. &c
+
+    Address of c is 1056
+
+    ✅ R-value: (not dereferenced) — N/A
+
+    ✅ L-value: 1056
+
+g. &e + 1
+
+    Address of e is 1032 → next address for a pointer is 1036
+
+    ✅ R-value: 1036
+
+    ✅ L-value: N/A (expression)
+
+h. &o - 4
+
+    &o = 1096, -4 → 1096 - 4×4 = 1080
+
+    ✅ R-value: 1080
+
+    ✅ L-value: N/A
+
+i. &(f + 2)
+
+    f = 1052, so address is 1052
+
+    f + 2 = 1052 + 2×4 = 1060
+
+    So, &(f + 2) = address 1060
+
+    ✅ R-value: 1060
+
+    ✅ L-value: N/A
+
+j. *g
+
+    g points to 1064 (from addr 1000)
+
+    Contents at 1064 = 1000
+
+    ✅ R-value: 1000
+
+    ✅ L-value: 1000 (location g is pointing to)
+
+k. *k + 1
+
+    k = 1052 (from addr 1044)
+
+    *k = contents at 1052 = 1044
+
+    *k + 1 = 1044 + 1 = 1045
+
+    ✅ R-value: 1045
+
+    ✅ L-value: N/A
+
+l. *(n + 1)
+
+    n is at 1076 → pointer: 1056
+
+    n + 1 = 1056 + 4 = 1060
+
+    *1060 = value at address 1060 = 1012
+
+    ✅ R-value: 1012
+
+    ✅ L-value: 1060
+
+m. *h - 4
+
+    h = 1020 (from addr 1080)
+
+    *h = contents at 1020 = 1080
+
+    1080 - 4 = 1076
+
+    ✅ R-value: 1076
+
+    ✅ L-value: N/A
+
+n. *(u - 4)
+
+    u = 1036 → pointer = 1092
+
+    u - 4 = 1036 - 4×4 = 1020
+
+    *1020 = 1080
+
+    ✅ R-value: 1080
+
+    ✅ L-value: 1020
+
+o. *f - g
+
+    f = 1044 (from addr 1052), g = 1064 (from 1000)
+
+    *f = 1044, g = 1064
+
+    1044 - 1064 = -20
+
+    ✅ R-value: -20
+
+    ✅ L-value: N/A
+
+p. *f - *g
+
+    *f = 1044,
+
+    *g = g = 1064 → contents at 1064 = 1000
+
+    *f - *g = 1044 - 1000 = 44
+
+    ✅ R-value: 44
+
+    ✅ L-value: N/A
+
+q. *s - *q
+
+    s = 2000 (from 1004), *s = contents at 2000 = 1000
+
+    q = 1072 (from 1084), *q = contents at 1072 = 1080
+
+    1000 - 1080 = -80
+
+    ✅ R-value: -80
+
+    ✅ L-value: N/A
+
+r. *(r - t)
+
+    r = 1048 (from 1068), t = 1012 (from 1060)
+
+    r - t = 1048 - 1012 = 36
+
+    *(36) → illegal unless we know 36 is valid. But if interpreted as address 36 → contents unknown.
+
+    ✅ R-value: unknown/invalid
+
+    ✅ L-value: invalid
+
+s. y > i
+
+    y = 1068 (from 1048), i = 1080 (from 1020)
+
+    1068 > 1080 = false
+
+    ✅ R-value: 0 (false)
+
+    ✅ L-value: N/A
+
+t. y > *i
+
+    *i = contents at 1080 = 1020
+
+    y = 1068
+
+    1068 > 1020 = true
+
+    ✅ R-value: 1 (true)
+
+    ✅ L-value: N/A
+
+u. *y > *i
+
+    y = 1048 → [1068]
+
+    *y = 1068 → [1048]
+
+    i = 1020 → [1080]
+
+    *i = 1080 → [1020]
+
+➡️ *y = 1048, *i = 1020
+
+✅ R-value: 1048 > 1020 = 1 (true)
+✅ L-values: y, i
+
+v. **h
+
+    h = 1080 → [1020]
+
+    *h = 1020 → [1080]
+
+    **h = 1080
+
+✅ R-value: 1080
+✅ L-values: h, *h
+
+w. c++
+
+    c = 1056 → [1076]
+
+✅ R-value: 1076
+✅ L-value: c (then becomes 1060 after increment)
+
+x. ++c
+
+    Before: c = 1056 → [1076]
+
+    After increment: c = 1060
+
+✅ R-value: 1060
+✅ L-value: c
+
+
+y. *q++
+
+    q = 1084 → [1072]
+
+    *q = 1072 (used before increment)
+
+    Then: q = 1088
+
+✅ R-value: 1072
+✅ L-value: q (before increment)
+
+
+z. (*q)++
+
+    *q = 1072
+
+    (*q)++ → return 1072, then *q = 1076
+
+✅ R-value: 1072
+✅ L-value: *q
+
+
+aa. *++q
+
+    q = 1084 → q = 1088
+
+    Value at 1088? NOT in table → ❌ Undefined
+
+✅ R-value: ❌ Undefined
+✅ L-value: q
+
+
+bb. ++*q
+
+    *q = 1072
+
+    ++*q = 1076
+
+✅ R-value: 1076
+✅ L-value: *q
+
+
+cc. *++*q
+
+    *q = 1072 → becomes 1076 (after ++*q)
+
+    *1076 = 1056
+
+✅ R-value: 1056
+✅ L-values: *q, *(*q)
+
+
+dd. ++*(*q)++
+
+    *q = 1072 → *(*q) = 1080
+
+    Post-increment: (*q)++ → becomes 1076
+
+    *1080 = 1020 → ++1020 = 1024
+
+✅ R-value: 1024
+✅ L-value: *(*q) (originally at 1080)

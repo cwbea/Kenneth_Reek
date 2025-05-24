@@ -1,0 +1,15 @@
+For most programs, it usually is not worth the extra effort to worry about whether to use fgetc(stdin) or getchar() because:
+
+    Both functions essentially do the same thing: read one character from standard input.
+
+    getchar() is typically just a simple macro or function that calls fgetc(stdin) internally.
+
+    Performance differences, if any, are negligible in most practical cases.
+
+    Code clarity and readability are more important; getchar() is simpler and more idiomatic for reading from standard input.
+
+When might you care?
+If you’re writing highly performance-sensitive or very low-level code, or dealing with different input streams (not just stdin), then using fgetc() explicitly on the desired stream is clearer and more flexible.
+
+Summary:
+For typical programs, just use getchar() for convenience and clarity — the difference is minor and usually not worth stressing over.

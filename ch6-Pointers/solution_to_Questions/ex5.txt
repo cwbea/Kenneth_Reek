@@ -1,0 +1,7 @@
+here is no difference in what the expressions do (both move the pointer p forward by 3 elements),
+ but there is a minor difference in how the compiler evaluates them.
+
+
+p += offset; uses a variable, so it requires loading offset at runtime.
+
+p += 3; uses a constant, which is slightly easier for the compiler to optimize.

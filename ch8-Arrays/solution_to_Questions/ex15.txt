@@ -1,0 +1,12 @@
+Statement 2 is the correct and safer choice:
+
+if (which < SIZE && array[which] == 5)
+
+Here's why:
+💡 Why does this work safely?
+
+C uses short-circuit evaluation in logical &&:
+
+    In if (A && B), if A is false, B is not evaluated.
+
+    So, in which < SIZE && array[which] == 5, if which is out of bounds, the array is never accessed.

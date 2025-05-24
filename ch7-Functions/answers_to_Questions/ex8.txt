@@ -1,0 +1,3 @@
+Recursion and a while loop are similar in that both are used to repeat a 
+set of instructions until a certain condition is met. In other words, 
+both can be used to implement iteration or repetition in a program.

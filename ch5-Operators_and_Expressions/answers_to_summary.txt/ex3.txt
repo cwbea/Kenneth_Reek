@@ -1,0 +1,12 @@
+Bitwise and shifting operators in C (and other languages) are powerful tools 
+used for low-level data manipulation, performance optimizations, and hardware-level 
+programming. Here's a breakdown of practical uses for each:
+
+1. Bitmasking
+2. Packing and unpacking of data: embedded systems
+3. Performance optimization : left shift
+4. Cryptography: XOR
+5. Graphics programming: Bitwise operations
+6. Embedded and systems programming
+7. Flags and permissions
+8. Generating hash functions

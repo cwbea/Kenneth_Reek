@@ -1,0 +1,55 @@
+Running without optimization:
+Total time: 0.039902 seconds
+Running with optimization (gcc -O2):
+Total time: 0.041575 seconds
+
+
+1. Optimization Didn't Lead to a Faster Execution in This Case:
+The fact that the optimized version is slightly slower (0.041575s vs 0.039902s) is surprising but not entirely unexpected.
+Compiler optimizations like -O2 do things such as function inlining, loop unrolling, and register optimization. 
+However, in some scenarios, the compiler might not be able to improve performance significantly, especially when
+ the program is already relatively efficient.
+
+JIT (Just-In-Time) compilation or runtime optimizations in specific environments 
+might play a role, and optimizationsmight sometimes add overhead in very small or simple programs.
+
+2. Small Difference in Execution Time:
+The time difference here is quite small (~0.0017 seconds), which could be attributed to several factors:
+
+The operations being performed (adding integers from an array) are relatively simple.
+
+The compiler may have already optimized the non-optimized version fairly well, especially with memory access patterns.
+
+The functions tested (pointer arithmetic vs. indexing) may be optimized similarly by the compiler for such a simple task.
+
+3. Why Might the Optimized Version Be Slower?
+
+    Increased complexity from optimizations: Compiler optimizations might have added extra 
+overhead in terms of code generation, especially in smaller-scale benchmarks. For instance, 
+optimizations like function inlining or loop unrolling could introduce some overhead 
+that is more noticeable in a small-scale test.
+
+ Cache locality: The optimized version might have slightly worsened cache locality or memory access
+ patterns, making the pointer arithmetic slightly slower in practice, though this would generally not be expected.
+
+Measurement noise: For small time differences, sometimes the system’s background activity 
+(other processes, caching, or even small random fluctuations) can skew timing results.
+
+4. Insights:
+
+For small data sets (like the size 10,000 array here), the overhead of optimization might not always 
+yield noticeable performance improvements.
+
+The pointer arithmetic (try2) might be optimized well enough by the compiler even without the -O2 
+optimization flag, and the impact of optimizations may not be significant for such simple operations.
+
+Further scaling: To really see the differences in performance, you could try using much larger arrays
+ (e.g., arrays with millions of elements) or running the functions a much larger number of times 
+(e.g., 100,000 iterations), which would likely reveal more noticeable timing differences.
+
+Conclusion:
+For simple tasks like summing an array, optimizations (in this case, -O2) may not provide a significant 
+advantage, especially when the array size and function calls are small.
+
+If you scale up the array size or the number of iterations significantly, you might see the optimized 
+version outperforming the non-optimized one.

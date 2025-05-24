@@ -1,0 +1,58 @@
+char *pathname = " /usr/temp/XXXXXXXXXXXXXXX";
+/*
+** Insert the filename into the pathname.
+*/
+strcpy( pathname + 10, "abcde" );
+
+❌ What's wrong?
+
+    String Literal is Immutable
+    The line:
+
+char *pathname = " /usr/temp/XXXXXXXXXXXXXXX";
+
+creates a pointer to a string literal, which is read-only in C. 
+Modifying it using strcpy() results in undefined behavior (likely a segmentation fault).
+
+❗ String literals are usually stored in read-only sections of memory on most systems.
+
+Using strcpy() on a String Literal
+When you do:
+
+    strcpy(pathname + 10, "abcde");
+
+    you're trying to write into read-only memory, which is not allowed.
+
+ How to fix it
+
+Use a writable array instead of a pointer to a string literal:
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+    char pathname[100] = " /usr/temp/XXXXXXXXXXXXXXX";  // allocate writable memory
+
+    /*
+    ** Insert the filename into the pathname.
+    */
+    strcpy(pathname + 10, "abcde");  // safely copy into the writable buffer
+
+    printf("Result: %s\n", pathname);
+    return 0;
+}
+
+ Alternative (if using malloc):
+
+If dynamic allocation is required (e.g., in a larger application):
+
+char *pathname = malloc(100);
+strcpy(pathname, " /usr/temp/XXXXXXXXXXXXXXX");
+strcpy(pathname + 10, "abcde");
+
+Just ensure to free(pathname); at the end to avoid memory leaks.
+
+Summary
+Problem				Explanation			Fix
+Modifying string literal	Causes undefined behavior	Use a writable char[] array
+strcpy on read-only memory	May cause a crash (segfault)	Allocate buffer using array or malloc

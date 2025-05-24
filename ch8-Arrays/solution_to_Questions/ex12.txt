@@ -1,0 +1,1 @@
+ becomes relevant whenever you're dealing with memory layout or pointer arithmetic — especially with multidimensional arrays.

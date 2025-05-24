@@ -1,0 +1,60 @@
+If the order of operations involving top_element is reversed in the push and pop functions of a stack, 
+the stack will behave incorrectly and may cause data corruption or logic errors.
+
+ Correct Order (LIFO behavior):
+push:
+
+top_element += 1;
+stack[top_element] = value;
+
+pop:
+
+top_element -= 1;
+
+This way:
+
+    push stores the value after incrementing, pointing to the next free slot.
+
+    pop removes the value and then decrements the pointer to point to the new top.
+
+ Reversed Order:
+
+push (WRONG):
+
+stack[top_element] = value;
+top_element += 1;
+
+pop (WRONG):
+
+top_element -= 1;
+value = stack[top_element];
+
+ Consequences of Reversing the Order:
+
+    Off-by-one errors:
+
+        push would overwrite stack[0] on the first push, but top_element would still point to index 1.
+
+        This leads to incorrect top() or pop() behavior.
+
+    Loss of data:
+
+        The wrong element might be popped or viewed.
+
+        Data could be overwritten or skipped.
+
+    Access to uninitialized memory:
+
+        In pop, if you decrement first and then access, you could read from an invalid or stale memory location.
+
+    Inconsistent state:
+
+        The stack may seem full when it isn’t, or empty when it has data.
+
+ Conclusion:
+
+Reversing the order of incrementing/decrementing top_element and accessing the array leads to incorrect stack behavior. Always ensure:
+
+    push increments before writing.
+
+    pop reads before decrementing (if returning value), or simply decrements.

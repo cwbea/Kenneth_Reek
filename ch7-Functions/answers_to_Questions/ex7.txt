@@ -1,0 +1,11 @@
+There's nothing wrong from a strict compilation standpoint, but:
+int array[10] is decayed to int *array — this means the size information is lost. 
+You could pass an array of any size, and the function would still try to access 10 elements,
+ which can cause undefined behavior if the array is smaller.
+ Relying on the array always having exactly 10 elements is dangerous 
+unless it's clearly documented or enforced.You should pass the array 
+size as an argument to make the function more flexible and safe.
+
+e.g int find_max(int array[], int size);
+
+As another option, you can add error checks (e.g., NULL check or size validation if size is passed). 

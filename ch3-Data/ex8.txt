@@ -1,0 +1,1 @@
+No, in standard C string literals are read-only. Modifying them results in undefined behavior.

@@ -1,0 +1,24 @@
+Bit layout (left to right / MSB to LSB):
+
+| a (4 bits) | b (8 bits) | c (3 bits) | d (1 bit) |
+|15      12|11        4|3         1|0        |
+
+1. Storage:
+
+unsigned short x = 0;
+
+2. Set Fields:
+
+// Set values aaa, bbb, ccc, ddd into x
+x =  ((aaa & 0xF)  << 12) |
+     ((bbb & 0xFF) << 4)  |
+     ((ccc & 0x7)  << 1)  |
+     (ddd & 0x1);
+
+3. Get Fields:
+
+int a = (x >> 12) & 0xF;
+int b = (x >> 4)  & 0xFF;
+int c = (x >> 1)  & 0x7;
+int d = x & 0x1;
+

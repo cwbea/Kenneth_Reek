@@ -1,0 +1,2 @@
+pointers and non-pointers (integers, chars, etc.) are treated similarly in terms of register storage, 
+but may be passed differently depending on type (e.g., float vs. int).

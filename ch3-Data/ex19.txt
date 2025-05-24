@@ -1,0 +1,1 @@
+Declare int x;  as extern int x in another source file.

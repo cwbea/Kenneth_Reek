@@ -1,0 +1,34 @@
+The statement:
+
+printf( "%d\n", 3.14 );
+
+What happens:
+
+    %d expects an int argument.
+
+    You are passing a double (3.14) instead.
+
+    This causes undefined behavior because the types don’t match.
+
+Likely outcome:
+
+    It will print some unpredictable integer value.
+
+    The program may print garbage or even crash, depending on your system and compiler.
+
+    On most systems, it will just print a seemingly random integer that corresponds to how 
+    the bits of the floating-point number are interpreted as an integer.
+
+Correct usage:
+
+To print 3.14 as a floating-point number, use:
+
+printf("%f\n", 3.14);
+
+This prints:
+
+3.140000
+
+
+In summary:
+Passing a double where %d expects an int leads to undefined behavior and unpredictable output.

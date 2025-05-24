@@ -1,0 +1,19 @@
+1. Implementation-Dependent Memory Layout
+
+Different compilers and architectures may lay out bit fields in memory differently:
+
+    Bit ordering (left-to-right or right-to-left within a byte or word) can vary.
+
+    Alignment and padding between bit fields are not standardized.
+
+So the same bit field structure might produce different binary layouts on different systems.
+
+2. Word Boundary Behavior Is Undefined
+
+If a bit field spans across a storage unit boundary (e.g., across two bytes or two words), the behavior can differ:
+
+    Some compilers allow it, others don't.
+
+    Some insert padding; others do not.
+
+This affects both memory layout and performance, and it can result in incorrect data interpretation on different systems.

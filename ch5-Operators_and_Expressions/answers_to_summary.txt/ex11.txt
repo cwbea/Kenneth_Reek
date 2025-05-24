@@ -1,0 +1,61 @@
+a. a + ( b / c )
+Simplified:
+✅ a + b / c
+
+Division has higher precedence than addition, so parentheses are unnecessary.
+b. ( a + b ) / c
+Simplified:
+✅ (a + b) / c
+
+Parentheses must remain because addition would otherwise happen after division.
+c. ( a * b ) % 6
+Simplified:
+✅ a * b % 6
+Multiplication and modulus have the same precedence, evaluated left to right.
+
+d. a * ( b % 6 )
+Simplified:
+✅ a * (b % 6)
+Cannot remove parentheses: % and * are same precedence, but original grouped b % 6 first.
+
+e. ( a + b ) == 6
+Simplified:
+✅ a + b == 6
+Addition has higher precedence than ==, parentheses not needed.
+
+f. !( ( a >= '0' ) && ( a <= '9' ) )
+Simplified:
+✅ !(a >= '0' && a <= '9')
+Logical AND (&&) has higher precedence than logical NOT (!), so inner parentheses are needed for clarity but technically not required.
+
+g. ( ( a & 0x2f ) == ( b | 1 ) ) && ( ( ~ c ) > 0 )
+Simplified:
+✅ (a & 0x2f) == (b | 1) && ~c > 0
+Parentheses around bitwise AND/OR comparisons stay grouped for clarity, rest simplified.
+
+
+h. ( ( a << b ) – 3 ) < ( b << ( a + 3 ) )
+Simplified:
+✅ (a << b) - 3 < b << (a + 3)
+Shift and subtraction grouped logically; outermost parentheses removed.
+
+
+i. ~ ( a ++ )
+Simplified:
+✅ ~a++
+Unary operators like ~ and ++ bind tightly, no need for parentheses.
+
+j. ((a == 2) || (a == 4)) && ((b == 2) || (b == 4))
+Simplified:
+✅ (a == 2 || a == 4) && (b == 2 || b == 4)
+Grouped for clarity, but can’t remove all parentheses due to operator precedence (|| and &&).
+
+k. ( a & b ) ^ ( a | b )
+Simplified:
+✅ a & b ^ a | b
+Bitwise operators (&, ^, |) evaluated in left-to-right order by precedence.
+
+l. ( a + ( b + c ) )
+Simplified:
+✅ a + b + c
+All additions are associative; all parentheses can be removed.

@@ -1,0 +1,16 @@
+Example of a problem:
+
+FILE *fp;              // Declared but not initialized
+fprintf(fp, "Hello");  // Undefined behavior
+
+
+This refers to using a FILE * pointer that:
+
+    Has not been initialized (contains garbage).
+
+    Was not set by a successful call to fopen, freopen, etc.
+
+    Is NULL.
+
+If I/O is attempted on a stream that has never been opened, the result is undefined behavior
+ — the program may crash, produce corrupted output, or exhibit unexpected results.

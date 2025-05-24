@@ -1,0 +1,13 @@
+pros - Slightly more streamlined code flow if you assume every call inserts a node.
+
+Cons:
+
+    Unnecessary memory allocation if the value is already in the list.
+
+        For example, if next->value == value, the function returns 0, but the newnode has already been allocated.
+
+        This leads to a memory leak since that memory is never freed.
+
+    The allocated node might never be used.
+
+    This breaks the assumption that every malloc is paired with a use or a free.

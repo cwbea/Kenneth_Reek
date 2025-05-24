@@ -1,0 +1,3 @@
+The compiler allows the assignment although with a warning.
+When the program is ran, the value stored in small_decimal is rounded
+or truncated because float has less precision than double.

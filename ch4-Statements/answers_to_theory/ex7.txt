@@ -1,0 +1,5 @@
+putchar(c) is not inside the while loop,
+So it only runs after the loop ends, when ch == EOF.
+
+But EOF is not a valid character to print, 
+so you end up outputting an invalid or unintended value.

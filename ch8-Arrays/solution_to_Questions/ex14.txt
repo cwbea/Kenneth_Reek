@@ -1,0 +1,21 @@
+In C, the comma operator evaluates both operands but returns the result of the rightmost one. So:
+
+array[3,4]
+
+Is actually interpreted by the compiler as:
+
+array[4]
+
+this is what would work
+
+int array[10][20];
+int *i;
+i = array[3,4];  // Interpreted as i = array[4];
+
+This compiles because:
+
+    array[4] is an array of 20 ints
+
+    It decays to a pointer to int (int *)
+
+    And i is an int *

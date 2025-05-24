@@ -1,0 +1,43 @@
+Adding an empty() function to a stack module that removes all values from the stack would 
+make the module slightly more convenient, but not significantly more powerful.
+
+ Advantages of an empty() function:
+
+    Convenience: Saves the user from writing a loop to pop all elements.
+
+    Cleaner code: Improves readability and encapsulates stack-clearing logic.
+
+    Efficiency: In some implementations (e.g., linked list), it may free all nodes in one go.
+
+ Example usage:
+
+void empty(void) {
+    while (!is_empty()) {
+        pop();
+    }
+}
+
+Or in a linked stack:
+
+void empty(void) {
+    StackNode *current = stack;
+    while (current != NULL) {
+        StackNode *temp = current;
+        current = current->next;
+        free(temp);
+    }
+    stack = NULL;
+}
+
+ Limitations:
+
+    It doesn’t add new capabilities to the stack.
+
+    You could already achieve the same result with a loop:
+
+    while (!is_empty()) pop();
+
+ Conclusion:
+
+An empty() function is a nice-to-have for usability and readability, but it does not significantly 
+increase the power of the stack ADT. It just simplifies a common pattern.

@@ -1,0 +1,3 @@
+An unsigned integer can represent larger positive values because it doesn't have to 
+reserve one bit for the sign. All bits are used to represent magnitude,
+ so the maximum value is higher.

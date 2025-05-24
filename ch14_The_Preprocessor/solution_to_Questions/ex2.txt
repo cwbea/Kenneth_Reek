@@ -1,0 +1,19 @@
+1. Improved Readability
+
+Using #define gives meaningful names to values, making code easier to read and understand.
+
+#define MAX_USERS 100
+
+if (user_count > MAX_USERS) {
+    // easier to understand than: if (user_count > 100)
+}
+
+2. Easier Maintenance
+
+You can change the value in one place rather than hunting through code for every literal occurrence.
+
+#define BUFFER_SIZE 256
+
+char buffer[BUFFER_SIZE];
+// If you later need to change the buffer size, just modify the #define
+

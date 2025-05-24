@@ -1,0 +1,2 @@
+The do statement (or do...while loop) in C is more appropriate than 
+while or for when you want the loop body to execute at least once, no matter what.

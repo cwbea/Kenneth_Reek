@@ -1,0 +1,1 @@
+Use isalpha(ch) for clarity, correctness, and internationalization (portability).

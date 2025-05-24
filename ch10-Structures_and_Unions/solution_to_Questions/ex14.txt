@@ -1,0 +1,48 @@
+Access only the member that was most recently assigned.
+Why?
+
+A union stores all members in the same memory location, so writing to one member overwrites the others. This means:
+
+    Only the last written member holds valid data.
+
+    Accessing other members leads to undefined or meaningless values.
+
+✔️ Example:
+
+union Data {
+    int i;
+    float f;
+    char c;
+};
+
+union Data x;
+x.f = 3.14;          // Store a float value
+printf("%f\n", x.f); // Correct: accesses the most recent valid member
+
+❌ Incorrect usage:
+
+x.i = 100;
+x.f = 3.14;
+printf("%d\n", x.i); // Incorrect: accessing i after writing to f = undefined
+
+
+
+if you need to store different types at once and retrieve them later, use a struct or add an enum tag to track the active union member, like this:
+
+enum Type { INT, FLOAT, CHAR };
+
+struct {
+    enum Type tag;
+    union {
+        int i;
+        float f;
+        char c;
+    } data;
+} x;
+
+x.tag = FLOAT;
+x.data.f = 3.14;
+
+if (x.tag == FLOAT) {
+    printf("%f\n", x.data.f);  // Safe and correct
+}

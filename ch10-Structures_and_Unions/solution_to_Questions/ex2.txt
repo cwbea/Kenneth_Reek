@@ -1,0 +1,9 @@
+| Feature                       | **Structure Name**                                                | **Array Name**                                              |
+| ----------------------------- | ----------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Definition**                | Refers to a collection of variables (members) of different types. | Refers to a sequence of elements of the same type.          |
+| **Type**                      | User-defined (`struct`)                                           | Built-in (e.g., `int[]`, `float[]`)                         |
+| **Access**                    | Access individual members using dot (`.`) or arrow (`->`)         | Access elements using index: `arr[i]`                       |
+| **Acts as Pointer?**          | **No** – structure name is **not** a pointer to the first member. | **Yes** – array name **is** a pointer to the first element. |
+| **Can be assigned directly?** | No – individual members must be copied or use `memcpy`.           | No – cannot assign one array to another directly.           |
+| **Example**                   | `struct Person p;`                                                | `int arr[5];`                                               |
+

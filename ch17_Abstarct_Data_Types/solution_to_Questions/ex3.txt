@@ -1,0 +1,42 @@
+Yes, it is possible to provide both interfaces in one stack module.
+The Two Interfaces:
+
+    Traditional interface:
+
+        TYPE pop(void);
+
+        Removes and returns the top value.
+
+    Split interface (often used in C):
+
+        void pop(void); → Removes top value.
+
+        TYPE top(void); → Returns top value without removing.
+
+ Why both can coexist:
+
+You can implement both in the same module, using the same internal stack logic. Here's how:
+
+    pop() modifies the stack.
+
+    top() inspects the top without modifying it.
+
+    An additional pop_and_return() (or a traditional pop() that returns a value) can be added if needed.
+
+ Example in C:
+
+int pop_and_return(void) {
+    assert(!is_empty());
+    return stack[--top_index];
+}
+
+void pop(void) {
+    assert(!is_empty());
+    --top_index;
+}
+
+int top(void) {
+    assert(!is_empty());
+    return stack[top_index - 1];
+}
+

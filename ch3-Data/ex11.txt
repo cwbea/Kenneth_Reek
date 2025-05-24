@@ -1,0 +1,3 @@
+The int type can represent more distinct integer values than a 32-bit float 
+can represent distinct values, because int can exactly represent every integer within its range,
+ while float has precision limitations and cannot represent every integer in its range

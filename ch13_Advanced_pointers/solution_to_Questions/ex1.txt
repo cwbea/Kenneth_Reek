@@ -1,0 +1,16 @@
+| **C Declaration**           | **Matched Description**                                                         |
+| --------------------------- | ------------------------------------------------------------------------------- |
+| `int abc();`                | VIII. Function returning int                                                    |
+| `int abc[3];`               | III. Array of int                                                               |
+| `int **abc();`              | X. Function returning pointer to pointer to int                                 |
+| `int (*abc)();`             | XI. Pointer to function returning int                                           |
+| `int (*abc)[6];`            | IV. Pointer to array of int                                                     |
+| `int *abc();`               | IX. Function returning pointer to int                                           |
+| `int **(*abc[5])();`        | XVI. Array of pointer to function returning pointer to pointer to int           |
+| `int *abc[6];`              | V. Array of pointer to int                                                      |
+| `int *(*abc)[6];`           | VI. Pointer to array of pointer to int                                          |
+| `int *(*abc())();`          | XIX. Function returning pointer to function returning pointer to int            |
+| `int (**(*abc)())();`       | XXI. Pointer to function returning pointer to pointer to function returning int |
+| `int (*(*abc)())[6];`       | XX. Pointer to function returning pointer to array of int                       |
+| `int *(*(*(*abc)())[6])();` | XX. Pointer to function returning pointer to function returning pointer to int  |
+

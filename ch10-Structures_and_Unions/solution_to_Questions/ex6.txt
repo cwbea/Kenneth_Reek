@@ -1,0 +1,6 @@
+struct {
+    int a;
+    char b[10];
+    float c;
+} x = {3, "hello", 0.0f};
+

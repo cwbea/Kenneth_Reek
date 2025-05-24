@@ -1,0 +1,40 @@
+To determine how long the buffer must be to avoid overflow from this statement:
+
+sprintf(buffer, "%s", a);
+
+We need to ensure the buffer is large enough to hold:
+
+    The contents of the string a
+
+    The null terminator \0
+
+ Rule:
+
+    The buffer size must be at least strlen(a) + 1 bytes.
+
+ Explanation:
+
+    "%s" copies the entire string pointed to by a, up to the null terminator.
+
+    sprintf() does not automatically limit the number of characters written.
+
+    To prevent overflow, you must know or control the length of a.
+
+ Safe Example:
+
+If a points to a string "hello world" (11 characters), then:
+
+strlen(a) = 11
+Required buffer size = 11 + 1 = 12
+
+So you should declare:
+
+char buffer[12];
+
+ Better Practice:
+
+To avoid overflow risks, use snprintf():
+
+snprintf(buffer, sizeof(buffer), "%s", a);
+
+This ensures buffer will not be overrun even if a is unexpectedly long.

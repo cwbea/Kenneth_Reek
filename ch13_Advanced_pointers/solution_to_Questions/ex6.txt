@@ -1,0 +1,65 @@
+#include <stdio.h>
+
+typedef struct {
+    int x;
+    int y;
+} Point;
+
+int main() {
+    Point x = {1, 2};     // a Point variable x
+    Point y = {3, 4};     // another Point variable y
+    Point *a = &x;        // pointer to x
+    Point *b = &y;        // pointer to y
+
+    // Each statement below will be explained
+}
+
+
+a. x = y;
+
+    Meaning: Copy the contents of y into x.
+
+    After this line, x.x = 3 and x.y = 4.
+
+    Explanation: This is a structure assignment, which is allowed in C. All fields of y are copied into x.
+
+b. a = y;
+
+    ❌ Invalid.
+
+    Reason: a is a Point * (pointer), but y is a Point (structure).
+
+    You can't assign a structure to a pointer directly — their types don't match.
+
+    Compiler error: incompatible types.
+
+c. a = b;
+
+    Meaning: Make a point to whatever b is pointing to (i.e., to y).
+
+    Explanation: This is a valid pointer assignment. After this, both a and b point to y.
+
+d. a = *b;
+
+    ❌ Invalid.
+
+    Reason: *b is a Point, and a is a Point *.
+
+    Again, assigning a structure to a pointer is a type mismatch.
+
+    Compiler error.
+
+e. *a = *b;
+
+    Meaning: Copy the contents of *b (i.e., y) into the object pointed to by a.
+
+    Explanation: After this, the structure that a points to (e.g., x) will have the same content as y.
+
+ Summary Table
+
+Statement	Valid?	Meaning
+x = y;		✅	Copy contents of y into x.
+a = y;		❌	Invalid: assigning struct to pointer.
+a = b;		✅	Make a point to what b points to.
+a = *b;		❌	Invalid: assigning struct (*b) to a pointer.
+*a = *b;	✅	Copy contents of struct pointed to by b into struct pointed to by a.

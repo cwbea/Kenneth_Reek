@@ -1,0 +1,4 @@
+Use while when...				Use for when...
+Number of iterations is unknown			You know how many times to loop
+You're waiting for a condition or event		You need a counter or index (like arrays)
+Loop exit depends on user input / external IO	Loop is purely numeric and bounded

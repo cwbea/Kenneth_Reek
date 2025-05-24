@@ -1,0 +1,7 @@
+| Technique                        | Pros                                                           | Cons                                             |
+| -------------------------------- | -------------------------------------------------------------- | ------------------------------------------------ |
+| **Dummy Node (Sentinel)**        | Simplifies edge cases (empty list, inserting at the head/tail) | Increases memory usage (dummy node)              |
+| **Root Points to First Node**    | No extra memory for a dummy node                               | Needs checks for empty list (root can be `NULL`) |
+| **Separate Root and Data Nodes** | Clear separation of list metadata and data                     | Increases structure complexity                   |
+| **Circular Doubly Linked List**  | Simplifies traversal and empty list handling                   | Circular logic can be complex for beginners      |
+

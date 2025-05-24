@@ -1,0 +1,32 @@
+    Efficiency and Optimizations:
+
+ Both functions use pointer arithmetic in their assembly, but the performance 
+difference between try1 and try2 might be minimal. Both use similar optimizations such
+ as adjusting the pointer (rdi) directly to move through the array.
+
+try1 seems to have a slightly more straightforward approach in terms of logic 
+because it adds the value before moving the pointer.
+
+try2 increments the pointer first, then accesses the value, which is a small 
+difference but could affect performance depending on the compiler optimizations.
+
+
+    Stack Usage:
+
+Both functions make use of registers (%eax, %rdi, %rsi, and %rdx) efficiently 
+and avoid unnecessary stack operations. They both rely on pointer-based loops, 
+which minimizes overhead compared to indexed array access.
+
+    Function Prologue/Epilogue:
+Both functions follow a similar pattern of using a prologue (testl, movslq, xorl) and epilogue (ret) 
+to manage the function setup and return.
+
+Conclusion:
+
+Both try1 and try2 are efficient in terms of using pointers for array access. 
+The difference between the two is likely negligible in terms of performance, 
+and both would likely perform similarly in most practical scenarios.
+
+If your goal is to optimize for performance in tight loops, pointer arithmetic generally 
+performs slightly better than array subscripting. However, modern compilers often optimize 
+both in similar ways, especially when the optimization level is set to -O2 or higher.

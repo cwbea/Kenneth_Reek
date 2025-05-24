@@ -1,0 +1,27 @@
+To visit nodes of a Binary Search Tree (BST) in a specific order of their values:
+ Ascending Order
+
+Use in-order traversal (Left → Root → Right):
+
+// Pseudocode / Conceptual Steps
+in_order_traverse(node):
+    if node != NULL:
+        in_order_traverse(node.left)
+        visit(node)
+        in_order_traverse(node.right)
+
+Why?
+In a BST, left children are smaller and right children are larger. In-order traversal naturally visits nodes from smallest to largest.
+Descending Order
+
+Use reverse in-order traversal (Right → Root → Left):
+
+// Pseudocode / Conceptual Steps
+reverse_in_order_traverse(node):
+    if node != NULL:
+        reverse_in_order_traverse(node.right)
+        visit(node)
+        reverse_in_order_traverse(node.left)
+
+Why?
+This flips the standard in-order order and visits the largest elements first.

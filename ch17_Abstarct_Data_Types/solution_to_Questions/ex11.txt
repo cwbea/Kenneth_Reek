@@ -1,0 +1,32 @@
+Sure! Assuming a circular queue implemented with an array of size ARRAY_SIZE (with indices front and rear), 
+the number of values currently in the queue can be computed as:
+
+int count;
+
+if (rear >= front) {
+    count = rear - front + 1;
+} else {
+    count = ARRAY_SIZE - front + rear + 1;
+}
+
+Explanation:
+
+    When rear is ahead of or equal to front in the array (no wrap-around), the count is just the difference plus one.
+
+    When rear has wrapped around and is behind front, the count is the sum of the elements from front to the end of 
+    the array plus the elements from the start of the array up to rear.
+
+Example:
+
+If ARRAY_SIZE = 10, and
+
+    front = 7, rear = 2 → wrapped around case → count = (10 - 7) + 2 + 1 = 6
+
+    front = 2, rear = 5 → no wrap → count = 5 - 2 + 1 = 4
+
+If you want a single expression that always works, you can do:
+
+int count = (rear - front + ARRAY_SIZE + 1) % ARRAY_SIZE;
+
+But this works only if you have the convention that the queue is never completely full (i.e., one slot always left empty).
+ If your queue can be full, you'd need extra logic to distinguish empty vs full.

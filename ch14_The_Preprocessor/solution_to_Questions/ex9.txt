@@ -1,0 +1,35 @@
+#if sizeof(int) == 2
+typedef long int32;
+#else
+typedef int int32;
+#endif
+
+The issue lies with this line:
+
+#if sizeof(int) == 2
+
+❗ Why is this a problem?
+
+    The #if directive is part of the preprocessor, which operates before compilation.
+
+    The sizeof operator is part of the C language, which is evaluated during compilation.
+
+    Therefore, sizeof(int) cannot be used in a preprocessor directive like #if — this results in a compilation error.
+
+
+ Correct Approach
+
+To handle portability and define fixed-width types like int32, the correct and portable
+ way is to use the standard C header <stdint.h>, introduced in C99:
+
+#include <stdint.h>
+
+int32_t my_variable;  // Guaranteed to be exactly 32 bits if available
+
+
+
+Summary
+Problem	Explanation
+❌ sizeof in #if	Preprocessor can't evaluate sizeof
+✅ Use <stdint.h>	Provides int32_t, uint16_t, etc.
+✅ Better portability	Works across all platforms that support C99 or newer

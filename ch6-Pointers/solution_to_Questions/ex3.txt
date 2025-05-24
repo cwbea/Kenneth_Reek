@@ -1,0 +1,2 @@
+Because an integer is just a number — the machine doesn't treat it
+ as an address unless you tell it to by using it as a pointer.

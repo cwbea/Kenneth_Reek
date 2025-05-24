@@ -1,0 +1,94 @@
+The code fragment:
+
+Transaction *trans;
+trans->product->orders += 1;
+trans->product->quantity_on_hand -= trans->quantity;
+trans->product->supplier->reorder_quantity += trans->quantity;
+if( trans->product->export_restricted ){
+    ...
+}
+
+can be improved in several ways — for performance, readability, and safety:
+ 1. Add a null check for trans and its nested pointers
+
+The current code assumes that all pointers (trans, trans->product, trans->product->supplier) are valid.
+ If any of them is NULL, the program will crash with a segmentation fault.
+
+Improved:
+
+if (trans && trans->product && trans->product->supplier) {
+    trans->product->orders += 1;
+    trans->product->quantity_on_hand -= trans->quantity;
+    trans->product->supplier->reorder_quantity += trans->quantity;
+
+    if (trans->product->export_restricted) {
+        ...
+    }
+}
+
+2. Use local variables to reduce repeated dereferencing
+
+Dereferencing trans->product multiple times adds clutter and slight overhead. 
+Caching it in a local variable improves readability and efficiency.
+
+Improved:
+
+if (trans && trans->product && trans->product->supplier) {
+    Product *product = trans->product;
+    Supplier *supplier = product->supplier;
+
+    product->orders += 1;
+    product->quantity_on_hand -= trans->quantity;
+    supplier->reorder_quantity += trans->quantity;
+
+    if (product->export_restricted) {
+        ...
+    }
+}
+
+3. Add comments or structure for business logic clarity
+
+It’s helpful to label blocks of logic for maintainers:
+
+if (trans && trans->product && trans->product->supplier) {
+    Product *product = trans->product;
+    Supplier *supplier = product->supplier;
+
+    // Record the order
+    product->orders += 1;
+
+    // Update inventory
+    product->quantity_on_hand -= trans->quantity;
+
+    // Notify supplier
+    supplier->reorder_quantity += trans->quantity;
+
+    // Handle export restriction if applicable
+    if (product->export_restricted) {
+        // ...handle restriction...
+    }
+}
+
+ 4. Optional: Wrap in a function for reuse and testability
+
+void process_transaction(Transaction *trans) {
+    if (trans && trans->product && trans->product->supplier) {
+        Product *product = trans->product;
+        Supplier *supplier = product->supplier;
+
+        product->orders += 1;
+        product->quantity_on_hand -= trans->quantity;
+        supplier->reorder_quantity += trans->quantity;
+
+        if (product->export_restricted) {
+            // handle restriction
+        }
+    }
+}
+
+Summary of Improvements         Problem fix
+
+Unsafe pointer dereference	Add NULL checks
+Repeated dereference		Use local variables for product and supplier
+Unclear logic grouping		Add comments and structure
+Repetitive code usage		Wrap in a function for reuse

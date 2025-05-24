@@ -1,0 +1,89 @@
+void func( int ***arg ) {
+
+arg is a pointer to a pointer to a pointer to an int:
+
+    int ***
+
+This means:
+
+    *arg is an int **
+
+    **arg is an int *
+
+    ***arg is an int
+
+Memory Diagram
+
+Let’s say we have the following setup in your main() function:
+
+int x = 42;
+int *p = &x;
+int **pp = &p;
+func(&pp);  // Pass the address of pp (int ***)
+
+Diagram
+
+x    = 42         // int
+p    = &x         // int *
+pp   = &p         // int **
+&pp  = passed to func as arg (int ***)
+
+Inside func:
+
+arg    ---> pp (int **)
+*arg   ---> p  (int *)
+**arg  ---> x  (int)
+***arg ---> 42 (value)
+
+ Expression to Access the Integer
+
+Inside the func, to get the integer x, you write:
+
+int value = ***arg;
+
+This follows the pointer chain:
+
+    *arg dereferences to int ** → pp
+
+    **arg dereferences to int * → p
+
+    ***arg dereferences to int → x (which holds 42)
+
+
+    ┌────┐
+x:  │ 42 │  ←─── Value
+    └────┘
+      ▲
+      │
+    ┌────┐
+p:  │ &x │ = pointer to x
+    └────┘
+      ▲
+      │
+    ┌────┐
+pp: │ &p │ = pointer to p
+    └────┘
+      ▲
+      │
+    ┌────┐
+arg:│pp  │ = pointer to pp (int ***arg)
+    └────┘
+
+
+
+Full Example
+
+#include <stdio.h>
+
+void func(int ***arg) {
+    printf("Value is: %d\n", ***arg);
+}
+
+int main() {
+    int x = 42;
+    int *p = &x;
+    int **pp = &p;
+    func(&pp);  // pass address of pp, which is int ***
+    return 0;
+}
+

@@ -1,0 +1,5 @@
+No, it does not change the answer.
+
+The static keyword in C has a different meaning than the extern keyword. 
+If a variable is declared as static, it means that the variable retains its
+ value between function calls and its scope is limited to the function or file in which it is declared.

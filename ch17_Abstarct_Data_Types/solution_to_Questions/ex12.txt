@@ -1,0 +1,21 @@
+Singly Linked List for Queue:
+
+    You need to efficiently enqueue at the rear and dequeue from the front.
+
+    By keeping pointers to both the head (front) and tail (rear) nodes, you can perform both operations in O(1) time.
+
+    Each node only needs one pointer (to the next node), so the memory overhead is lower.
+
+Doubly Linked List for Queue:
+
+    Provides two pointers per node (next and previous), which uses more memory.
+
+    You don’t usually need to traverse backward in a queue.
+
+    The additional complexity and memory cost don't provide significant benefits for a queue’s typical enqueue/dequeue operations.
+
+Summary:
+
+    Singly linked list with head and tail pointers is the most common and efficient choice for implementing a queue.
+
+    Doubly linked lists are better when you need easy backward traversal or frequent removals from both ends, like in a deque.

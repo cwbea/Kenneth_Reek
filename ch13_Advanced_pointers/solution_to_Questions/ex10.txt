@@ -1,0 +1,45 @@
+A string literal in C is a sequence of characters enclosed in double quotes, like:
+
+char *str = "hello";
+
+In this case, "hello" is stored in read-only memory on most systems, and str points to it.
+⚠️ Why is modifying a string literal unsafe?
+
+Because:
+
+    String literals are often stored in read-only memory (such as .rodata segment).
+
+    The C Standard does not guarantee that you can write to them.
+
+    Modifying them leads to undefined behavior — your program might:
+
+        Crash (e.g., with a segmentation fault)
+
+        Corrupt memory silently
+
+        Seem to work on some systems and fail on others
+
+❌ Problem Example
+
+char *str = "hello";
+str[0] = 'H';  // ❌ undefined behavior
+
+On most modern systems, this will crash with a segmentation fault because "hello" is in read-only memory.
+✅ Correct Way: Use a character array
+
+If you need to modify a string, declare it as an array:
+
+char str[] = "hello";
+str[0] = 'H';  // ✅ safe and legal
+
+Here, the string is copied into writable stack memory, so it can be changed.
+
+ Summary of Potential Problems
+Problem			Explanation
+Segmentation fault	Attempt to write to read-only memory
+Memory corruption	If system allows writing, may corrupt data
+Portability issues	Works on one compiler, crashes on another
+Debugging difficulty	Bugs from UB can be subtle or intermittent
+📌 Key Rule
+
+    Never modify a string literal. Always use a character array if you need a mutable string.

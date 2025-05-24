@@ -1,0 +1,7 @@
+In ANSI C (C89/C90), function prototypes are not strictly required, 
+but they are strongly recommended. However, if a function is used 
+before it's defined, and no prototype is declared, the compiler 
+assumes it returns an int and attempts default argument promotions. 
+This can lead to bugs or undefined behavior, especially with functions 
+that return other types or take arguments of types other than int, char, or float. 
+For any real, maintainable, or collaborative project, not using prototypes is a disadvantage.

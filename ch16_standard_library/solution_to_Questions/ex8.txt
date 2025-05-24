@@ -1,0 +1,44 @@
+How qsort uses the comparison function:
+
+    The comparison function tells qsort how to order two elements.
+
+    It returns:
+
+        A negative value if the first element is less than the second.
+
+        Zero if they are equal.
+
+        A positive value if the first element is greater than the second.
+
+What if the comparison function returns the opposite values?
+
+    So, if you swap the signs, it means:
+
+        Returns positive when first < second.
+
+        Returns negative when first > second.
+
+What would happen?
+
+    The sorting order would be reversed.
+
+    Instead of sorting ascending, the array would be sorted descending.
+
+    So yes, it does change the behavior of qsort by changing the order of elements.
+
+In short:
+Normal comparison	Resulting order
+Negative if a < b	Ascending order
+Positive if a > b	Ascending order
+Opposite signs	Resulting order
+Positive if a < b	Descending order
+Negative if a > b	Descending order
+Summary:
+
+    The actual values don’t matter — only their sign.
+
+    Swapping signs flips the sort order.
+
+    qsort will still work correctly, but it will sort in the reverse order.
+
+

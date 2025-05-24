@@ -1,0 +1,2 @@
+Yes 
+If you declare static int x; in a.c, you cannot access it from other files, even with extern.

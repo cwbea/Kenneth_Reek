@@ -1,0 +1,23 @@
+This will only work correctly if all values are non-negative or all values are positive/zero.
+Example of failure:
+
+int array[] = { 10, -10, 0 };
+
+The sum is 0, but not all values are zero.
+
+It would incorrectly print "Values are all zero".
+
+You should check each element individually:
+
+non_zero = 0;
+for (i = 0; i < ARRAY_SIZE; i += 1) {
+    if (array[i] != 0) {
+        non_zero = 1;
+        break;
+    }
+}
+
+if (!non_zero)
+    printf("Values are all zero\n");
+else
+    printf("There are nonzero values\n");

@@ -1,0 +1,17 @@
+1. Drop the size of the first dimension (most common in practice):
+
+void function(int array[][2][5]);
+
+This works exactly the same — the compiler still knows how to index into the 2D slices of size [2][5].
+
+2. Use a pointer to a 2D array:
+
+void function(int (*array)[2][5]);
+
+This means array is a pointer to a 2D array of int (size [2][5]). This is functionally equivalent and often used in lower-level code.
+
+3. Use const if you don't modify the array:
+
+void function(const int array[][2][5]);
+
+This guarantees that the function won't modify the array elements, improving safety and clarity.

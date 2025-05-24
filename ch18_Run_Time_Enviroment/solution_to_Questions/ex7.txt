@@ -1,0 +1,13 @@
+While assembly language can be more efficient, we don't write everything in it because:
+
+    Low productivity – It's time-consuming and error-prone.
+
+    Poor portability – Assembly is hardware-specific; C code runs on many platforms.
+
+    Hard to maintain – Assembly is harder to read, debug, and modify than C.
+
+    Modern compilers are optimized – Compilers often generate assembly that is as fast (or faster) than hand-written code.
+
+    Lack of abstraction – Assembly lacks high-level constructs like functions, structures, or types.
+
+Conclusion: Assembly is best for small, critical sections; C is better for general development

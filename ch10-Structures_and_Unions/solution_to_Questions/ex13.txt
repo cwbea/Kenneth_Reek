@@ -1,0 +1,21 @@
+his is a union, not a structure.
+
+In a union, all members share the same memory.
+
+Only one member should be used at a time, because writing to one member overwrites the others.
+
+Only x.c has a valid value ('x').
+
+x.a and x.b now point to corrupted or undefined data.
+
+orrect usage of a union:
+
+Use only one member at a time:
+
+x.a = 25;
+printf("%d\n", x.a);
+
+or
+
+x.b = 3.14;
+printf("%g\n", x.b);

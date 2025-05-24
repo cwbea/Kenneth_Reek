@@ -1,0 +1,13 @@
+p_str = message;
+while (*p_str)
+    *p_str = islower(*p_str) ? toupper(*p_str) : *p_str, p_str++;
+OR
+
+
+p_str = message;
+while (*p_str) {
+    if (islower(*p_str))
+        *p_str = toupper(*p_str);
+    p_str++;
+}
+

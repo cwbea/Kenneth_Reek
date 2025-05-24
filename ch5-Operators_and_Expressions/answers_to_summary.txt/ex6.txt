@@ -1,0 +1,8 @@
+Operator		Description		Why it has side effects
+=			Assignment		It changes the value of a variable.
++=, -=, *=, /=, %= ...	Compound assignment	They change the value of a variable.
+++		Increment (prefix/postfix)	Modifies the value of the variable (adds 1).
+--		Decrement (prefix/postfix)	Modifies the value of the variable (subtracts 1).
+,		Comma operator			If one of the expressions has a side effect, the comma operator executes them in order.
+Function calls 
+(e.g., printf()  Any call that changes data or causes output	These can print, modify global variables, write to files, etc.

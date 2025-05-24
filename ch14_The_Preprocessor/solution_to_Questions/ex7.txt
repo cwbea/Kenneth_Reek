@@ -1,0 +1,63 @@
+short answer
+    ❌ The macro causes undefined behavior when passed expressions with side effects like i++.
+
+    ✅ Fix it by avoiding side effects in macro arguments or using a function instead.
+
+Rule of thumb: Never pass expressions with side effects (like i++) to macros that use the argument more than once.
+
+
+long answer 
+
+The Problem: Side Effects and Macros
+
+The macro:
+
+#define SUM(value) ( (value) + (value) )
+
+looks innocent, but it's dangerous when the argument has side effects, such as array[i++].
+ What Happens Here:
+
+In this line:
+
+sum += SUM(array[i++]);
+
+The macro expands to:
+
+sum += ( (array[i++]) + (array[i++]) );
+
+This results in i++ being evaluated twice in a single expression without an intervening sequence point. This causes:
+
+     Undefined behavior in C.
+
+Because:
+
+    The C standard says you must not modify a variable more than once between sequence points.
+
+    i++ modifies i twice, and it’s not guaranteed in what order.
+
+ Example of What Could Go Wrong:
+
+Suppose i = 0 and array = { 10, 20, 30 }
+
+Expected behavior (if SUM were a function):
+SUM(array[i++]) → array[0] + array[0] = 10 + 10 = 20, then i = 1
+
+Actual behavior may vary, but could end up like:
+
+    array[0] + array[1] = 10 + 20 = 30 and i = 2
+
+    Or worse: unpredictable behavior or even crash
+
+  Correct Solutions
+  Use a temporary variable:
+
+int temp = array[i++];
+sum += SUM(temp);
+
+ Or rewrite the macro safely as a function:
+
+int SUM(int value) {
+    return value + value;
+}
+
+Functions evaluate arguments only once, avoiding this entire problem.

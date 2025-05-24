@@ -1,0 +1,9 @@
+| Feature              | `alloca`              | `malloc`        |
+| -------------------- | --------------------- | --------------- |
+| Allocates on         | Stack                 | Heap            |
+| Deallocation         | Automatic (on return) | Manual (`free`) |
+| Speed                | Very fast             | Slower          |
+| Portability          | Low                   | High            |
+| Safe for large data? | No (risk of overflow) | Yes             |
+| Standard C?          | ❌ No (extension)      | ✅ Yes           |
+

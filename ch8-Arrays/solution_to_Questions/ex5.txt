@@ -1,0 +1,4 @@
+Use subscripts when they make the code clearer and easier to maintain, 
+especially when performance isn’t an issue.
+Use pointers when you need fine-grained control or performance 
+optimization in low-level or tight-loop situations.

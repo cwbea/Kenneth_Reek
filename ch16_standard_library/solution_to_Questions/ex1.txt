@@ -1,0 +1,34 @@
+The function call:
+
+strtol("12345", NULL, -5);
+
+is invalid, and it behaves in an undefined or implementation-defined way because of the invalid base value -5.
+
+
+Valid base values:
+
+    Must be 0 or between 2 and 36 (inclusive).
+
+    base == 0 → the base is automatically detected from the string:
+
+        "0x..." → hexadecimal
+
+        "0..." → octal
+
+        Otherwise → decimal
+
+
+What might happen?
+
+    On some implementations, strtol may return 0.
+
+    On others, it could return garbage, or even crash.
+
+    Some compilers might warn you or catch it at runtime in debug mode.
+
+ Correct usage:
+
+strtol("12345", NULL, 10);   // Returns 12345 (decimal)
+strtol("12345", NULL, 8);    // Returns 5349 (octal)
+strtol("12345", NULL, 16);   // Returns 74565 (hexadecimal)
+

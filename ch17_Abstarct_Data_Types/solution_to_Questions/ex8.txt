@@ -1,0 +1,67 @@
+The local variable first_node in the linked stack implementation can technically be omitted, 
+but it is not recommended to do so. Here's why:
+
+ The usual pop() function looks like this:
+
+void pop(void) {
+    StackNode *first_node;
+    assert(!is_empty());
+
+    first_node = stack;
+    stack = first_node->next;
+    free(first_node);
+}
+
+ Could it be written without first_node?
+
+Yes, you could write:
+
+void pop(void) {
+    assert(!is_empty());
+
+    StackNode *temp = stack->next;
+    free(stack);
+    stack = temp;
+}
+
+Or even:
+
+void pop(void) {
+    assert(!is_empty());
+    StackNode *temp = stack;
+    stack = stack->next;
+    free(temp);
+}
+
+Or directly:
+
+void pop(void) {
+    assert(!is_empty());
+    StackNode *temp = stack;
+    stack = stack->next;
+    free(temp);
+}
+
+ So why use first_node?
+
+Using first_node (or a clearly named local variable):
+
+    Improves code readability
+
+    Makes the logic clearer (especially for beginners)
+
+    Avoids mistakes when accessing the node after changing the stack pointer
+
+ Omitting it entirely (no temporary variable at all):
+
+void pop(void) {
+    assert(!is_empty());
+    stack = stack->next;  // ❌ Memory leak: no call to free()
+}
+
+This would result in a memory leak, because the top node was never free()d.
+ Conclusion:
+
+    Yes, the first_node variable could be omitted by combining steps.
+
+    No, it should not be omitted in practice, because it improves clarity, maintainability, and helps avoid common bugs.

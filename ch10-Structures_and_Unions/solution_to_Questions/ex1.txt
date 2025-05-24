@@ -1,0 +1,41 @@
+1. Data Types
+
+    Structure members can have different data types.
+
+struct Person {
+    char name[50];
+    int age;
+    float height;
+};
+
+Array elements must all be of the same data type.
+
+    int numbers[5];  // all elements are ints
+
+2. Accessing Elements
+
+    Structure members are accessed by name using the dot (.) or arrow (->) operator.
+
+person.age
+
+Array elements are accessed by index using square brackets.
+
+    numbers[2]
+
+3. Memory Layout
+
+    In a structure, members are stored sequentially in memory, but may have padding between them for alignment.
+
+    In an array, elements are stored contiguously without padding.
+
+4. Usage Purpose
+
+    Structures group related but different kinds of data (heterogeneous).
+
+    Arrays store multiple items of the same kind (homogeneous).
+
+5. Size
+
+    The size of a structure depends on the sizes and alignment of its members.
+
+    The size of an array is the size of one element multiplied by the number of elements.

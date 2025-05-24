@@ -1,0 +1,7 @@
+| **Pros**                                              | **Cons**                                                           |
+| ----------------------------------------------------- | ------------------------------------------------------------------ |
+| Simplifies insertion and deletion logic.              | Adds extra memory usage (one dummy node).                          |
+| Unified operations for insertion and deletion.        | Can be confusing for beginners (no useful data in the first node). |
+| Prevents edge case errors (e.g., handling head node). | Slight performance overhead due to extra checks.                   |
+| Improves code readability and consistency.            | Potential unnecessary complexity for simple lists.                 |
+
